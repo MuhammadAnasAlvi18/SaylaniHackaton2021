@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript</title>
+    <link rel="stylesheet" href="./assets/css/home.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <!-- <link rel="stylesheet" href="./assets/css/layout.css"> -->
+    <script src="https://kit.fontawesome.com/1958b1fb84.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital@1&display=swap" rel="stylesheet">
+    <!-- <link rel="stylesheet" href="olx.css"> -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+   <!-- The core Firebase JS SDK is always required and must be listed first -->
+   <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-app.js"></script>
+
+   
+   <!-- TODO: Add SDKs for Firebase products that you want to use
+        https://firebase.google.com/docs/web/setup#available-libraries -->
+   <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-analytics.js"></script>
+   <script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-storage.js"></script>
+   <script>
+     // Your web app's Firebase configuration
+     // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+     var firebaseConfig = {
+       apiKey: "AIzaSyAdYd7LAqtkJemEn8GHJaEV8kRhn7HzDVI",
+       authDomain: "practice-d9684.firebaseapp.com",
+       projectId: "practice-d9684",
+       storageBucket: "practice-d9684.appspot.com",
+       messagingSenderId: "235831722999",
+       appId: "1:235831722999:web:fc52eb6e03792972f964f2",
+       measurementId: "G-WR0P7ZFX6B"
+     };
+     // Initialize Firebase
+     firebase.initializeApp(firebaseConfig);
+     firebase.analytics();
+   </script>
+
+</head>
+<body>
+<nav class="nav">
+    <div class="container-fluid navbar">
+        <div class="row navbar-row">
+            <div class="col-sm-3 nav-logo">
+                <img src="assets/images/logo.jpg">
+            </div>
+            <div class="col-sm-9 nav-links">
+                <ul>
+                    <li><a href="">HOME</a></li>
+                    <li><a href="">ABOUT</a></li>
+                    <li><a href="dashboard.html">DASHBOARD</a></li>
+                    <li><a href="">CONTACT</a></li>
+                    <li><button onclick="signout()">LOGOUT</button></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="addProduct">
+        <!-- <h2>Add Your Product</h2> -->
+        <div class="productDIV">
+            <a style="border: 2px solid #fff; padding: 10px; margin-top: 40px; text-decoration: none; color: #fff;"><label for="file">Upload Item Image</label></a>
+            <input style="display: none;" type="file" name="image" id="file">
+        </div>
+        <div class="productDIV">
+            <input type="text" name="RestaurantName" id="restaurantName" placeholder="Enter Restaurant Name">
+        </div>
+        <div class="productDIV">
+            <input type="text" name="Price" id="price" placeholder="Enter Product Price">
+        </div>
+        <div class="productDIV">
+            <input type="text" name="ItemName" id="ItemName" placeholder="Enter Item Name">
+        </div>
+        <div class="productDIV category">
+            <select name="category" id="category">
+                <option class="option" value="Pizza">Pizza</option>
+                <option class="option" value="Fast Food">Fast Food</option>
+                <option class="option" value="Burger">Burger</option>
+                <option class="option" value="FrenchFries">French Fries</option>
+                <option class="option" value="MilkShake">Milk Shake</option>
+                <option class="option" value="JuiceShop">Juice Shop</option>
+                <option class="option" value="FreshFruits">Fresh Fruits</option>
+            </select>
+        </div>
+        <div class="productDIV DeliveryDIV">
+            <select name="delivery" id="delivery">
+                <option value="Free">Free</option>
+                <option value="Paid">Paid</option>
+            </select>
+            <button onclick="Addproduct()">ADD YOUR PRODUCT</button>
+        </div>
+    </div>
+</nav>
+
+<script src="./assets/js/app.js"></script>
+
+
+</body>
+</html>

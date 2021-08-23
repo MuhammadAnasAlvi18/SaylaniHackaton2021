@@ -1,0 +1,240 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    font-family: 'Poppins', sans-serif;
+    width: 100%;
+}
+.navbar{
+    width: 100%;
+    height: 100px;
+}
+.nav-logo{
+    width: 100%;
+}
+@media screen and (max-width: 991px) {
+    .nav-logo{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 160px;
+    }
+    .navbar{
+        height: auto;
+    }
+}
+@media screen and (max-width: 660px){
+    .nav-links ul li button{
+        display: block;
+        margin: 10px auto;
+    }
+}
+@media screen and (max-width: 756px) {
+    .nav-logo{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 160px;
+    }
+}
+@media screen and (max-width:440px) {
+    .nav-links{
+        width: 100%;
+        height: 120px;
+        margin-top: 110px;
+    }
+    .nav-links ul{
+     display: flex;
+     justify-content: center;
+     align-items: center;  
+     flex-direction: column;
+    }
+    
+}
+@media screen and (min-width:450px){
+    .nav-links ul li{
+       display: flex;
+       flex-wrap: nowrap;
+    }
+}
+.nav-logo img{
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin: 10px;
+}
+.nav-links{
+    width: 100%;
+    height: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Poppins', sans-serif;
+}
+.nav-links ul li{
+    font-size: 18px;
+    display: inline;
+    padding: 20px;
+    list-style-type: none;
+}
+.nav-links ul li a{
+    color: #f3f3f3;
+    text-decoration: none;
+    font-family: 'Poppins', sans-serif;
+}
+.nav-links ul li a:hover{
+    border-right:1px solid #f3f3f3;
+    border-left:1px solid #f3f3f3;
+    padding: 5px;
+}
+.nav-links ul li button{
+    font-family: 'Poppins', sans-serif;
+    background: none;
+    color: #ffffff;
+    border: 2px solid #ffffff;
+    padding: 10px;
+    font-size: 16px;
+    font-weight: 700;
+    transition: 0.5s;
+    transition-delay: 0.25s;
+}
+.nav-links ul li button:hover{
+   border: 2px solid #ffffff;
+   color: rgb(255, 255, 255);
+   transform: rotate(360deg);
+}
+.nav{
+    width: 100%;
+    height: 80vh;
+    background-image: url('../images/banner.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.nav h2{
+    color: #ffffff;
+    width: 40%;
+    font-size: 40px;
+    font-style: 900;
+    line-height: 70px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    font-family: 'Poppins', sans-serif;
+    text-align: start;
+}
+.nav p{
+    color: #e9a449;
+    width: 40%;
+    font-size: 20px;
+    font-style: 900;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-40%,-47%);
+    font-family: 'Poppins', sans-serif;
+}
+.buyBtn{
+    color: #e9a449;
+    border: 2px solid #ffffff;
+    background: none;
+    width: 20%;
+    font-size: 16px;
+    padding: 10px 0;
+    font-style: 900;
+    position: absolute;
+    top: 70%;
+    left: 45%;
+    transform: translate(-60%,-47%);
+    font-family: 'Poppins', sans-serif;
+    transition: 0.5s ease-in-out;
+}
+.buyBtn:hover{
+    background: #e29c40;
+    color: #ffffff;
+}
+.cards{
+    width: 100%;
+    height: 90vh;
+}
+.cardsh2{
+    border-top: 2px solid #9b9797;
+    border-bottom: 2px solid #9b9797;
+    text-align: center;
+    padding: 10px 0;
+}
+.orderBTN{
+    margin-bottom: 30px;
+}
+.main-card{
+    width: 100%;
+    height: 100%;
+    border: 1px solid #9b9797;
+    padding: 10px;
+}
+.main-card img{
+    width: 100%;
+}
+.container {
+    width: 100%;
+    font-family: 'Poppins';
+    font-size: 16px;
+    text-align: center;
+    border: 2px solid #000;
+    padding: 30px;
+    margin-bottom: 20px;
+}
+.container img{
+    width: 100%;
+    height: 100%;
+}
+p.card-text {
+    font-size: 17px;
+    /* font-stretch: extra-condensed; */
+    font-weight: 600;
+    text-transform: uppercase;
+}
+p#Price {
+    font-size: 30px;
+    font-weight: bold;
+    font-family: 'Poppins';
+    text-transform: uppercase;
+}
+h4#title {
+    font-size: 20px;
+    font-weight: 900;
+    text-transform: uppercase;
+}
+.h2DIv{
+    width: 100%;
+}
+h2.cardsh2 {
+    font-family: 'Poppins';
+    font-weight: 500;
+    text-transform: uppercase;
+    text-align: center;
+    display: block;
+    margin: 20px auto;
+}
+
+.orderBtn{
+    width: 100px;
+    height: 40px;
+    background: linear-gradient(
+200deg
+, #b37e08, #ec7a7aa8);
+    border: 2px solid #000;
+    color: #fff;
+    font-family: 'Poppins';
+    text-transform: uppercase;
+    font-weight: 700;
+    word-spacing: 86px;
+    letter-spacing: 5px;
+    transition: 0.5s;
+}
+.orderBtn:hover {
+    background: transparent;
+    color: #000;
+    transition: 0.5s;
+}

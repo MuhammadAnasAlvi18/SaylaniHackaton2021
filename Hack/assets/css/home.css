@@ -1,0 +1,362 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    font-family: 'Poppins', sans-serif;
+    width: 100%;
+}
+.navbar{
+    width: 100%;
+    height: 100px;
+}
+.nav-logo{
+    width: 100%;
+}
+@media screen and (max-width: 991px) {
+    .nav-logo{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 160px;
+    }
+    .navbar{
+        height: auto;
+    }
+}
+@media screen and (max-width: 660px){
+    .nav-links ul li button{
+        display: block;
+        margin: 10px auto;
+    }
+}
+.nav-logo img{
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    margin: 10px;
+}
+.nav-links{
+    width: 100%;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.nav-links ul li{
+    display: inline;
+    padding: 20px;
+    list-style-type: none;
+}
+.nav-links ul li a{
+    color: #f3f3f3;
+    text-decoration: none;
+    font-family: 'Poppins', sans-serif;
+}
+.nav-links ul li a:hover{
+    border-right:1px solid #f3f3f3;
+    border-left:1px solid #f3f3f3;
+    padding: 5px;
+}
+.nav-links ul li button{
+    font-family: 'Poppins', sans-serif;
+    background: none;
+    color: #ffffff;
+    border: 2px solid #ffffff;
+    padding: 10px;
+    font-size: 16px;
+    font-weight: 700;
+    transition: 0.5s;
+    transition-delay: 0.25s;
+}
+.nav-links ul li button:hover{
+   border: 2px solid #ffffff;
+   color: rgb(255, 255, 255);
+   transform: rotate(360deg);
+}
+.nav{
+    width: 100%;
+    height: 100vh;
+    background-image: url('../images/banner.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.nav h2{
+    color: #ffffff;
+    width: 40%;
+    font-size: 40px;
+    font-style: 900;
+    line-height: 70px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    font-family: 'Poppins', sans-serif;
+    text-align: start;
+}
+.nav p{
+    color: #e9a449;
+    width: 40%;
+    font-size: 20px;
+    font-style: 900;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-40%,-47%);
+    font-family: 'Poppins', sans-serif;
+}
+.buyBtn{
+    color: #ffffff;
+    border: 2px solid #ffffff;
+    background: none;
+    width: 20%;
+    font-size: 16px;
+    padding: 10px 0;
+    font-style: 900;
+    position: absolute;
+    top: 70%;
+    left: 45%;
+    transform: translate(-60%,-47%);
+    font-family: 'Poppins', sans-serif;
+    transition: 0.5s ease-in-out;
+}
+.buyBtn:hover{
+    background: #e29c40;
+    color: #ffffff;
+}
+.category{
+    border: none;
+}
+.addProduct{
+    width: 100%;
+    height: 60vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.addProduct h2{
+    width: 100%;
+    position: absolute;
+    top: 20%;
+    left: 85%;
+}
+.productDIV input {
+    width: 30%;
+    margin: 20px;
+    font-size: 16px;
+    border: none;
+    background: transparent;
+    color: #fff;
+    border-bottom: 2px solid #fff;
+}
+.productDIV input:focus {
+    border: none;
+    outline: none;
+    border-bottom: 2px solid #fff;
+}
+.productDIV input::placeholder {
+    text-align: center;
+    color: #fff;
+}
+.productDIV select {
+    width: 25%;
+    margin: 10px;
+}
+.productDIV {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.productDIV button {
+    width: 10%;
+    padding: 5px;
+    background: transparent;
+    color: #fff;
+    border: 2px solid #fff;
+}
+.productDIV button:hover{
+    background: #fff;
+    color: #000;
+    border: 2px solid #000;
+}
+
+@media screen and (max-width: 991px) {
+    .nav-logo{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 160px;
+    }
+    .navbar{
+        height: auto;
+    }
+}
+@media screen and (max-width: 660px){
+    .nav-links ul li button{
+        display: block;
+        margin: 10px auto;
+    }
+}
+@media screen and (max-width: 756px) {
+    .nav-logo{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 160px;
+    }
+    .nav h2 {
+        width: 70%;
+        font-size: 35px;
+        text-align: center;
+        padding-top: 30px;
+    }
+    .text{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+@media screen and (max-width:460px) {
+    .nav-links{
+        width: 100%;
+        height: 100px;
+        margin-top: 110px;
+    }
+    .nav-links ul{
+     display: flex;
+     justify-content: center;
+     align-items: center;  
+     flex-direction: column;
+    }
+    .nav{
+        height: 120vh;
+    }
+    .nav h2 {
+        width: 100%;
+        font-size: 35px;
+        text-align: center;
+        padding-top: 30px;
+    }
+    button.buyBtn {
+        margin-top: 285px;
+        width: 100%;
+        position: relative;
+        color: #fff;
+        padding: 10px;
+    }
+    .text {
+        width: 100%;
+        height: 50%;
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+@media screen and (min-width:450px){
+.addProduct {
+    margin-top: 120px;
+}
+.nav{
+    height: 110vh;
+}
+}
+@media screen and (max-width:760px){
+    .cards{
+        flex-direction: column;
+    }
+    .main-card{
+        margin-bottom: 20px;
+    }
+}
+
+
+@keyframes slider {
+    0%{
+        left: 0;
+    }
+    20%{
+        left: 0;
+    }
+    25%{
+        left: -100%;
+    }
+    45%{
+        left: -100%;
+    }
+    50%{
+        left: -200%;
+    }
+    70%{
+        left: -200%;
+    }
+    75%{
+        left: -300%;
+    }
+    95%{
+        left: -300%;
+    }
+    100%{
+        left: 400%;
+    }
+}
+#slider{
+    overflow: hidden;
+    transition: 0.5s;
+    margin-bottom: 20px;
+}
+#slider figure img{
+    width: 10%;
+    height: 60vh;
+    float: left;
+    display: block;
+}
+#slider figure{
+    position: relative;
+    width: 500%;
+    margin: 0;
+    left: 0;
+    text-align: left;
+    font-size: 0;
+    animation: 20s slider infinite;
+}
+
+.productsh2{
+    width: 100%;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Poppins";
+    text-transform:uppercase ;
+}
+.productsh2 h2{
+    font-size: 40px;
+}
+.footerh2{
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Poppins";
+}
+.footericons{
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.footericons i{
+    font-size: 30px;
+    padding: 15px;
+}
+.footericons i:hover{
+    color: #e9a449;
+    font-size: 32px;
+}

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript</title>
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital@1&display=swap" rel="stylesheet">
+
+   <!-- The core Firebase JS SDK is always required and must be listed first -->
+   <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-app.js"></script>
+
+   
+   <!-- TODO: Add SDKs for Firebase products that you want to use
+        https://firebase.google.com/docs/web/setup#available-libraries -->
+   <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-analytics.js"></script>
+   <script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-storage.js"></script>
+   
+   <script>
+     // Your web app's Firebase configuration
+     // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+     var firebaseConfig = {
+       apiKey: "AIzaSyAdYd7LAqtkJemEn8GHJaEV8kRhn7HzDVI",
+       authDomain: "practice-d9684.firebaseapp.com",
+       projectId: "practice-d9684",
+       storageBucket: "practice-d9684.appspot.com",
+       messagingSenderId: "235831722999",
+       appId: "1:235831722999:web:fc52eb6e03792972f964f2",
+       measurementId: "G-WR0P7ZFX6B"
+     };
+     // Initialize Firebase
+     firebase.initializeApp(firebaseConfig);
+     firebase.analytics();
+   </script>
+
+</head>
+<body>
+    <div class="contain">
+    <h1>Register</h1>
+    <span id="error" style="color: red;"></span>
+    <div class="login-fld">
+      <input type="text" id="username" required placeholder="Enter Your Username" />
+     </div>
+    <div class="login-fld">
+      <input type="email" id="email" required placeholder="Enter Your Email Address" />
+     </div>
+     <div class="login-fld">
+     <input type="password" id="password" required placeholder="Enter Your Password" />
+   </div>
+   <div class="login-fld">
+   <input type="text" name="number" id="usernumber" placeholder="Enter Your Number">
+  </div>
+  <div class="login-fld">
+    <input type="text" name="country" id="usercountry" placeholder="Enter Your Country">
+   </div>
+   <!-- <label class="container-radio">Restaurant
+       <input type="radio" name="user-role" value="Restaurant">
+       <span class="checkmark"></span>
+   </label>
+   <label class="container-radio">User
+       <input type="radio" name="user-role" value="User">
+       <span class="checkmark"></span>
+   </label> -->
+   <div class="role-fld">
+     <select name="userrole" >
+       <option id="user-role" value="Restaurant">Restaurant</option>
+       <option id="user-role" value="Customer">Customer</option>
+     </select>
+   </div><br>
+    <div class="login-btn">
+      <input type="submit" value="Register" onclick="register()">
+    </div>
+    <p>Already have an Account</p>
+    <a href="login.html">Login Here...</a>
+    
+</div>
+
+    <script src="./assets/js/app.js"></script>
+</body>
+</html>

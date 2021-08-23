@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript</title>
+    <link rel="stylesheet" href="./assets/css/home.css">
+    <!-- <link rel="stylesheet" href="./assets/css/layout.css"> -->
+    <script src="https://kit.fontawesome.com/1958b1fb84.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital@1&display=swap" rel="stylesheet">
+    <!-- <link rel="stylesheet" href="olx.css"> -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+   <!-- The core Firebase JS SDK is always required and must be listed first -->
+   <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-app.js"></script>
+
+   
+   <!-- TODO: Add SDKs for Firebase products that you want to use
+        https://firebase.google.com/docs/web/setup#available-libraries -->
+   <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-analytics.js"></script>
+   <script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-storage.js"></script>
+   <script>
+     // Your web app's Firebase configuration
+     // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+     var firebaseConfig = {
+       apiKey: "AIzaSyAdYd7LAqtkJemEn8GHJaEV8kRhn7HzDVI",
+       authDomain: "practice-d9684.firebaseapp.com",
+       projectId: "practice-d9684",
+       storageBucket: "practice-d9684.appspot.com",
+       messagingSenderId: "235831722999",
+       appId: "1:235831722999:web:fc52eb6e03792972f964f2",
+       measurementId: "G-WR0P7ZFX6B"
+     };
+     // Initialize Firebase
+     firebase.initializeApp(firebaseConfig);
+     firebase.analytics();
+   </script>
+
+</head>
+<body>
+<nav class="nav">
+    <div class="container-fluid navbar">
+        <div class="row navbar-row">
+            <div class="col-sm-3 nav-logo">
+                <img src="assets/images/logo.jpg">
+            </div>
+            <div class="col-sm-9 nav-links">
+                <ul>
+                    <li><a href="home.html">HOME</a></li>
+                    <li><a href="#productsh2">ABOUT</a></li>
+                    <li><a href="buy.html">BUY</a></li>
+                    <li><a href="">CONTACT</a></li>
+                    <li><button onclick="signout()">LOGOUT</button></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="text">
+    <p>Up For A BITE</p>
+    <h2>Order Tasty And Fresh Food Anytime!</h2>
+    <a href="buy.html"><button class="buyBtn">Buy Now</button></a>
+</div>
+</nav>
+<div data-aos="zoom-in-up" class="productsh2" id="productsh2">
+    <h2>Our Products</h2>
+</div>
+<div id="slider">
+    <figure>
+        <img src="assets/images/shake.jpg" >
+        <img src="assets/images/fast food.jpg" >
+        <img src="assets/images/French.jpg" >
+        <img src="assets/images/fruits.jpg" >
+        <img src="assets/images/juice2.jpg">
+        <img src="assets/images/shake.jpg" >
+        <img src="assets/images/156-1564108_chinese-food-png-chinese-fast-food-items-transparent.png">
+        <img src="assets/images/fast food.jpg">
+    </figure>
+</div>
+<div class="footerh2">
+    <h2>Follow Us On</h2>
+</div>
+<div class="footericons">
+        <i class="fab fa-facebook"></i>
+        <i class="fab fa-instagram"></i>
+        <i class="fab fa-twitter"></i>
+</div>
+
+<script src="./assets/js/app.js"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    AOS.init();
+  </script>
+</body>
+</html>
