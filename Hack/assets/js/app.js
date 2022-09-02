@@ -10,7 +10,8 @@ let usernumber = document.getElementById('usernumber')
 let usercountry = document.getElementById('usercountry')
 let userRole = document.getElementById('user-role') 
 console.log(userRole)
-let card = document.getElementById('card')
+let card = document.querySelector('#cards .row')
+let loader = document.getElementById('loader');
 console.log(card)
 let cards = document.getElementById('cards')
 let restaurantName = document.getElementById('restaurantName')
@@ -18,6 +19,7 @@ let price = document.getElementById('price')
 let ItemName = document.getElementById('ItemName')
 let category = document.getElementById('category')
 let delivery = document.getElementById('delivery')
+let nav = document.querySelector(".navbaar");
 let randomId = Math.floor(Math.random() * 124903)
 console.log(randomId)
 async function Addproduct(){
@@ -59,9 +61,13 @@ resolve(url)
 function getProducts(){
   db.collection("products").get().then((querySnapshot) => {
     querySnapshot.forEach((doc) => {
-        console.log(doc.id, " => ", doc.data());
+    console.log(doc.id, " => ", doc.data());
+    loader.classList.add("d-none");
+    loader.classList.add("w-0");
+    loader.classList.add("p-0");
     const mainCardDetail = `
-     <div class="col-sm-4 container">
+     <div class="col-lg-4 col-md-4 col-sm-12 pr-0 pl-0">
+     <div class="cardsDiv">
          <img src="${doc.data().image}" alt="res-img"/> 
          <h5 class="card-title" id="title">Category: ${doc.data().ItemName}</h5>
          <h4 class="card-title" id="title">Restaurant: ${doc.data().restaurantName}</h4>
@@ -69,11 +75,11 @@ function getProducts(){
          <p style="color: green;" id="ordMsg"></p>
          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the cards content.</p>
          <p id="Price">Rs : ${doc.data().price}</p>
-         <button class="orderBtn" id="orderBtn" onclick="orderfunc(this)">Order</button>
-      
+         <a href="javascript:void(0)" class="orderBtn ${doc.id}" id="orderBtn" onclick="orderfunc(this)">Add To Cart</a>
+         </div>
      </div>
     `
-    cards.innerHTML += mainCardDetail
+    card.innerHTML += mainCardDetail;
   
     });
 });
@@ -115,7 +121,7 @@ function loginForm(){
    .then((userCredential) => {
      // Signed in
      var user = userCredential.user;
-     console.log(user , '49')
+     console.log(user.uid , '49')
      uid = user.uid
      let docRef = db.collection('users').doc(uid);
       docRef.get().then((doc) => {
@@ -135,7 +141,7 @@ function loginForm(){
    .catch((error) => {
      var errorCode = error.code;
      var errorMessage = error.message;
-     errorMsg.innerText = errorMessage
+     errorMsg.innerHTML = errorMessage
    });
  
  }
@@ -177,5 +183,28 @@ function signout(){
       });
       
 }
-  
 
+
+const showNav = () => {
+    nav.classList.add("active");
+}
+const closeNav = () => {
+    nav.classList.remove("active");
+}
+
+
+window.onscroll = function () {
+  if (window.pageYOffset > 40) {
+    nav.classList.add("sticky");
+  } else {
+    nav.classList.remove("sticky");
+  }
+};
+
+
+function orderfunc(productId){
+  let btnClass = productId.getAttribute("class");
+  let splitId = btnClass.split("orderBtn ");
+  let productCartId = splitId[1];
+  console.log(productCartId);
+}

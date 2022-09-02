@@ -1,141 +1,174 @@
-*{
+* {
     margin: 0;
     padding: 0;
 }
-body{
-    font-family: 'Poppins', sans-serif;
+
+body {
+    font-family: 'Poppins', sans-serif !important;
     width: 100%;
 }
-.navbar{
-    width: 100%;
-    height: 100px;
+
+a{
+    text-decoration: none !important;
 }
-.nav-logo{
-    width: 100%;
-}
-@media screen and (max-width: 991px) {
-    .nav-logo{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 160px;
-    }
-    .navbar{
-        height: auto;
-    }
-}
-@media screen and (max-width: 660px){
-    .nav-links ul li button{
-        display: block;
-        margin: 10px auto;
-    }
-}
-@media screen and (max-width: 756px) {
-    .nav-logo{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 160px;
-    }
-}
-@media screen and (max-width:440px) {
-    .nav-links{
-        width: 100%;
-        height: 120px;
-        margin-top: 110px;
-    }
-    .nav-links ul{
-     display: flex;
-     justify-content: center;
-     align-items: center;  
-     flex-direction: column;
-    }
-    
-}
-@media screen and (min-width:450px){
-    .nav-links ul li{
-       display: flex;
-       flex-wrap: nowrap;
-    }
-}
-.nav-logo img{
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    margin: 10px;
-}
-.nav-links{
-    width: 100%;
-    height: 120px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: 'Poppins', sans-serif;
-}
-.nav-links ul li{
-    font-size: 18px;
-    display: inline;
-    padding: 20px;
-    list-style-type: none;
-}
-.nav-links ul li a{
-    color: #f3f3f3;
+a:hover{
     text-decoration: none;
-    font-family: 'Poppins', sans-serif;
 }
-.nav-links ul li a:hover{
-    border-right:1px solid #f3f3f3;
-    border-left:1px solid #f3f3f3;
-    padding: 5px;
+a:focus{
+    text-decoration: none;
 }
-.nav-links ul li button{
-    font-family: 'Poppins', sans-serif;
-    background: none;
-    color: #ffffff;
-    border: 2px solid #ffffff;
-    padding: 10px;
-    font-size: 16px;
-    font-weight: 700;
-    transition: 0.5s;
-    transition-delay: 0.25s;
-}
-.nav-links ul li button:hover{
-   border: 2px solid #ffffff;
-   color: rgb(255, 255, 255);
-   transform: rotate(360deg);
-}
-.nav{
+
+.navbaar {
     width: 100%;
-    height: 80vh;
-    background-image: url('../images/banner.jpg');
+    height: 80px;
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 40px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    transition: 0.5s;
+}
+
+.navbaar.sticky {
+    background: rgba(0, 0, 0, 0.8);
+}
+
+.navbaar img {
+    width: 70px;
+    border-radius: 50%;
+}
+
+.navbaar ul {
+    display: flex;
+    align-items: center;
+}
+
+.navbaar ul li {
+    list-style: none;
+    margin: 0 20px;
+    font-size: 18px;
+}
+
+.navbaar ul li a {
+    text-decoration: none;
+    color: #fff;
+    position: relative;
+}
+
+.navbaar ul li a::before {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background: #fff;
+    bottom: -5px;
+    transition: 0.3s;
+}
+
+.navbaar ul li a:hover::before {
+    width: 100%;
+}
+
+.navbaar i {
+    font-size: 26px;
+    color: #fff;
+    display: none;
+}
+
+.navbaar.active ul {
+    top: 0;
+}
+
+.navbaar.active ul .fa-xmark {
+    display: block;
+}
+
+.fa-xmark {
+    position: absolute;
+    left: 30px;
+    top: 30px;
+    background-color: black;
+    padding: 20px 25px;
+    border-radius: 50%;
+    display: none;
+    cursor: pointer;
+}
+
+.banner {
+    width: 100%;
+    height: 100vh;
+    background: url("/assets/images/banner.jpg");
+    background-size: cover;
     background-position: center;
-    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    padding-left: 150px;
 }
-.nav h2{
-    color: #ffffff;
-    width: 40%;
-    font-size: 40px;
-    font-style: 900;
-    line-height: 70px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-    font-family: 'Poppins', sans-serif;
-    text-align: start;
+
+.banner h1 {
+    color: #fff;
+    font-size: 50px;
 }
-.nav p{
-    color: #e9a449;
-    width: 40%;
-    font-size: 20px;
-    font-style: 900;
-    position: absolute;
-    top: 40%;
-    left: 50%;
-    transform: translate(-40%,-47%);
-    font-family: 'Poppins', sans-serif;
+
+.banner h5 {
+    color: #fff;
+    font-size: 22px;
 }
-.buyBtn{
+
+.banner a {
+    font-size: 22px;
+    padding: 10px 50px;
+    background: #e9a449;
+    text-decoration: none;
+    color: #fff;
+    margin-top: 40px;
+    transition: 0.5s ease-out;
+    border: 1px solid #fff;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+}
+
+.banner a:focus{
+    color: #fff;
+}
+
+.banner a i{
+    padding-left: 10px;
+    transition: 0.6s ease;
+}
+
+.banner a:hover {
+    color: #fff;
+    /* background: transparent; */
+    border: 1px solid #fff;
+    text-decoration: none;
+    /* padding-right: 50px; */
+}
+
+.banner a:hover i{
+    padding-left: 30px;
+}
+
+#loader {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 100px 0;
+}
+
+#loader h1 {
+    font-size: 50px;
+}
+
+.buyBtn {
     color: #e9a449;
     border: 2px solid #ffffff;
     background: none;
@@ -146,69 +179,83 @@ body{
     position: absolute;
     top: 70%;
     left: 45%;
-    transform: translate(-60%,-47%);
+    transform: translate(-60%, -47%);
     font-family: 'Poppins', sans-serif;
     transition: 0.5s ease-in-out;
 }
-.buyBtn:hover{
+
+.buyBtn:hover {
     background: #e29c40;
     color: #ffffff;
 }
-.cards{
+
+.cards {
     width: 100%;
-    height: 90vh;
+    height: 100%;
 }
-.cardsh2{
+
+.cardsh2 {
     border-top: 2px solid #9b9797;
     border-bottom: 2px solid #9b9797;
     text-align: center;
     padding: 10px 0;
 }
-.orderBTN{
-    margin-bottom: 30px;
-}
-.main-card{
+
+.main-card {
     width: 100%;
     height: 100%;
     border: 1px solid #9b9797;
     padding: 10px;
 }
-.main-card img{
+
+.main-card img {
     width: 100%;
 }
-.container {
-    width: 100%;
+
+.cardsDiv {
     font-family: 'Poppins';
     font-size: 16px;
     text-align: center;
-    border: 2px solid #000;
-    padding: 30px;
+    box-shadow: 0px 0px 9px 0px rgba(0, 0, 0, 0.75);
+    -webkit-box-shadow: 0px 0px 9px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 0px 9px 0px rgba(0, 0, 0, 0.75);
+    padding-bottom: 20px;
+    margin: 10px;
     margin-bottom: 20px;
 }
-.container img{
+
+.cardsDiv img {
     width: 100%;
     height: 100%;
+    border-bottom: 1px solid #000;
 }
+
 p.card-text {
     font-size: 17px;
-    /* font-stretch: extra-condensed; */
     font-weight: 600;
     text-transform: uppercase;
+    padding: 0 20px;
 }
+
 p#Price {
     font-size: 30px;
     font-weight: bold;
     font-family: 'Poppins';
     text-transform: uppercase;
+    padding: 20px 0;
 }
+
 h4#title {
     font-size: 20px;
     font-weight: 900;
     text-transform: uppercase;
+    padding: 0 20px;
 }
-.h2DIv{
+
+.h2DIv {
     width: 100%;
 }
+
 h2.cardsh2 {
     font-family: 'Poppins';
     font-weight: 500;
@@ -218,23 +265,58 @@ h2.cardsh2 {
     margin: 20px auto;
 }
 
-.orderBtn{
-    width: 100px;
-    height: 40px;
-    background: linear-gradient(
-200deg
-, #b37e08, #ec7a7aa8);
+.orderBtn {
+    padding: 10px 50px;
+    background: linear-gradient(200deg, #b37e08, #ec7a7aa8);
     border: 2px solid #000;
     color: #fff;
     font-family: 'Poppins';
     text-transform: uppercase;
     font-weight: 700;
-    word-spacing: 86px;
-    letter-spacing: 5px;
-    transition: 0.5s;
+    margin: 30px 0;
+    transition: 0.6s ease-in;
 }
+
 .orderBtn:hover {
     background: transparent;
     color: #000;
-    transition: 0.5s;
+}
+
+@media (max-width:900px) {
+
+    .navbaar {
+        position: relative;
+        background: #000;
+    }
+
+    .navbaar.sticky {
+        background: #000;
+    }
+
+    .navbaar ul {
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        background: #e29c40;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 30px 0;
+        position: fixed;
+        left: 0;
+        top: -100%;
+        border: 2px solid #fff;
+        transition: 0.5s;
+        z-index: 1;
+    }
+
+    .navbaar ul li {
+        font-size: 30px;
+        padding-bottom: 30px;
+    }
+
+    .navbaar i {
+        display: block;
+    }
+
 }

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,41 +10,34 @@
     <link rel="stylesheet" href="./assets/css/layout.css">
     <script src="https://kit.fontawesome.com/1958b1fb84.js" crossorigin="anonymous"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:ital@1&display=swap" rel="stylesheet">
-    <!-- <link rel="stylesheet" href="olx.css"> -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital@1&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-storage.js"></script>
 
-   <!-- The core Firebase JS SDK is always required and must be listed first -->
-   <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-app.js"></script>
-
-   
-   <!-- TODO: Add SDKs for Firebase products that you want to use
-        https://firebase.google.com/docs/web/setup#available-libraries -->
-   <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-analytics.js"></script>
-   <script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-auth.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-firestore.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-storage.js"></script>
-   <script>
-     // Your web app's Firebase configuration
-     // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-     var firebaseConfig = {
-       apiKey: "AIzaSyAdYd7LAqtkJemEn8GHJaEV8kRhn7HzDVI",
-       authDomain: "practice-d9684.firebaseapp.com",
-       projectId: "practice-d9684",
-       storageBucket: "practice-d9684.appspot.com",
-       messagingSenderId: "235831722999",
-       appId: "1:235831722999:web:fc52eb6e03792972f964f2",
-       measurementId: "G-WR0P7ZFX6B"
-     };
-     // Initialize Firebase
-     firebase.initializeApp(firebaseConfig);
-     firebase.analytics();
-   </script>
+    <script>
+        var firebaseConfig = {
+            apiKey: "AIzaSyAdYd7LAqtkJemEn8GHJaEV8kRhn7HzDVI",
+            authDomain: "practice-d9684.firebaseapp.com",
+            projectId: "practice-d9684",
+            storageBucket: "practice-d9684.appspot.com",
+            messagingSenderId: "235831722999",
+            appId: "1:235831722999:web:fc52eb6e03792972f964f2",
+            measurementId: "G-WR0P7ZFX6B"
+        };
+        firebase.initializeApp(firebaseConfig);
+        firebase.analytics();
+    </script>
 
 </head>
+
 <body>
-<nav class="nav">
+    <!-- <nav class="nav">
     <div class="container-fluid navbar">
         <div class="row navbar-row">
             <div class="col-lg-3 nav-logo">
@@ -51,7 +45,7 @@
             </div>
             <div class="col-lg-9 nav-links">
                 <ul>
-                    <li><a href="restaurant.html">HOME</a></li>
+                    <li><a href="restaurant.html"><a href="restaurant.html">Home</a></a></li>
                     <li><a href="">ABOUT</a></li>
                     <li><a href="dashboard.html">DASHBOARD</a></li>
                     <li><a href="">CONTACT</a></li>
@@ -60,11 +54,46 @@
             </div>
         </div>
     </div>
-</nav>
-<div class="h2DIv">
-<h2 class="cardsh2">Products</h2></div>
-<div class="cards" id="cards">
-</div>
+</nav> -->
+
+
+        <div class="navbaar">
+            <a href="restaurant.html"><img src="assets/images/logo.jpg" alt="logo"></a>
+            <ul>
+                <i class="fa-solid fa-xmark" onclick="closeNav()"></i>
+                <li><a href="restaurant.html">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="#">Contact</a></li>
+                <li><i class="fa-solid fa-cart-shopping d-block"></i></li>
+                <li><a href="#">Logout</a></li>
+            </ul>
+            <i class="fa-solid fa-bars" onclick="showNav()"></i>
+        </div>
+
+        <div class="banner">
+            <h1>The Food Camp</h1>
+            <h5>Order Tasty And Fresh Food Anytime</h5>
+            <a href="#">Buy Now <i class="fa-solid fa-cart-shopping"></i></a>
+        </div>
+        
+
+    <div class="h2DIv">
+        <h2 class="cardsh2">Products</h2>
+    </div>
+    <div class="cards" id="cards">
+        <div class="container-fluid">
+        <div class="row">
+            <div class="loader" id="loader">
+                <h1>Loading Products...</h1>
+            </div>
+        </div>
+    </div>
+    </div>
+
+
 <script src="./assets/js/app.js"></script>
+
 </body>
+
 </html>
