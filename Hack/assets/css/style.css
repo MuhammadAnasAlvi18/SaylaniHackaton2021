@@ -3,20 +3,8 @@ body{
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    height: 100vh;
+    /* height: 100vh; */
     font-family: "Poppins" !important;
-}
-.contain {
-    min-width: 50%;
-    height: 523px;
-    box-shadow: -5px 6px 22px 6px rgb(0 0 0 / 68%);
-    -webkit-box-shadow: -5px 6px 22px 6px rgb(0 0 0 / 15%);
-    -moz-box-shadow: -5px 6px 22px 6px rgba(0,0,0,0.68);
-    padding: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
 }
 .avatar{
     width: 100px;
@@ -24,40 +12,39 @@ body{
     border-radius: 50%;
     margin: 5px;
 }
-.contain form {
-    width: 100%;
-    display: flex;
-    flex-flow: column;
-    justify-content: center;
-    align-items: center;
-}
 .login-fld {
     width: 75%;
-    border-bottom: 1px solid #9a9a9a;
     margin-bottom: 23px;
-    height: 43px;
-
+    /* border: 2px solid #fff; */
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
+    border: 2px solid #fff;
 }
 .login-fld input {
     width: 100%;
     height: 100%;
     border: none;
-    padding: 0 6px;
+    background: #e9a449;
+    /* padding: 0 6px; */
     outline:none;
     transition: 0.5s;
+    color: #fff;
+    padding: 10px;
 }
 .login-fld input::placeholder{
     font-family: "Poppins";
     font-size: 14px;
-    color: #767676;
+    color: #fff;
 }
 .login-btn {
-    width: 75%;
+    width: 35%;
     height: 43px;
-    background: #002f34;
+    background: #e9a449;
     border-radius: 4px;
     transition: 0.5s;
     border: none;
+    border: 2px solid #fff;
 }
 
 .login-btn input {
@@ -65,43 +52,88 @@ body{
     height: 100%;
     color: #fff;
     font-family: "Poppins";
-    background: none;
+    background: transparent;
     border: none;
     letter-spacing: 1px;
     text-transform: uppercase;
 }
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active{
+    background: transparent !important;
+}
+
 .login-btn input:focus{
     background-color: transparent;
 }
-.login-btn:hover{
-    background: transparent;
-    border: 1px solid #002f34;
-}
-.login-btn:hover input{
-    color:  #002f34;
-}
-.contain h1 {
+.register h1 {
     font-size: 30px;
     text-transform: uppercase;
     font-weight: 700;
     letter-spacing: 1px;
-    color: #002f34;
-    padding: 0 0 11px;
+    color: #e9a449;
+    padding: 20px 0 11px;
 }
-.contain p {
-    font-size: 13px;
+.register p {
+    font-size: 16px;
     padding: 10px 0;
-    color: #495057;
+    color: #fff;
     margin: 0;
 }
-.contain a {
+.register a {
     text-decoration: none !important;
-    color: #767676;
-    font-size: 15px;
+    color: #e9a449;
+    font-size: 18px;
     padding: 0;
     margin: 0;
     transition: 0.5s;
 }
-.contain a:hover{
-    color: teal;
+
+.register a:hover{
+    color: #e9a449;
+}
+
+.register a:focus{
+    color: #e9a449;
+}
+
+.role-fld select{
+    display: block;
+    background: #e9a449;
+    border: none;
+    outline: none;
+    padding: 10px 20px;
+    padding-left: 10px;
+    color: #fff;
+    border: 2px solid #fff;
+}
+
+.imgDiv {
+    margin-bottom: 41px;
+    margin-left: 90px;
+    width: 100px;
+    height: 100px;
+    display: block;
+    margin-right: auto;
+    position: relative;
+    border-radius: 50%;
+}
+
+.imgDiv label{
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+.imgDiv input{
+    display: none;
+}
+
+.imgDiv img{
+    width: 100%;
+    height: 100%;
+    border: 1px solid #fff;
+    border-radius: 50%;
 }

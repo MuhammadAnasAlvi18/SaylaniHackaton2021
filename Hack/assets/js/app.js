@@ -8,7 +8,7 @@ var db = firebase.firestore();
 const LoginForm = document.querySelector('.login-form')
 let usernumber = document.getElementById('usernumber')
 let usercountry = document.getElementById('usercountry')
-let userRole = document.getElementById('user-role') 
+let userRole = document.getElementById('user-role')
 console.log(userRole)
 let card = document.querySelector('#cards .row')
 let loader = document.getElementById('loader');
@@ -20,53 +20,60 @@ let ItemName = document.getElementById('ItemName')
 let category = document.getElementById('category')
 let delivery = document.getElementById('delivery')
 let nav = document.querySelector(".navbaar");
-let randomId = Math.floor(Math.random() * 124903)
-console.log(randomId)
-async function Addproduct(){
-  let id = randomId
+let userDetail = document.querySelector(".userDetail");
+let productCartId = [];
+let uid;
+let avatarImg = document.getElementById("avatarImg");
+let userRestaurantName = document.getElementById("userRestaurantName");
+
+async function Addproduct() {
+  let id = uid
   let url = await uploadImage(id)
   console.log(url)
-  getProducts(id)
+  getProducts();
   await db.collection("products").doc().set({
-    restaurantName : restaurantName.value,
-    price : price.value,
-    ItemName : ItemName.value,
-    category : category.value,
-    delivery : delivery.value,
-    Id : randomId,
-    image : url
-})
-.then(() => {
-    console.log("Document successfully written!");
-    restaurantName.value = '';
-    price.value = '';
-    ItemName.value = '';
-})
-.catch((error) => {
-    console.error("Error writing document: ", error);
-});
+    restaurantName: restaurantName.value,
+    price: price.value,
+    ItemName: ItemName.value,
+    category: category.value,
+    delivery: delivery.value,
+    order: false,
+    Id: uid,
+    image: url
+  })
+    .then(() => {
+      console.log("Document successfully written!");
+      restaurantName.value = '';
+      price.value = '';
+      ItemName.value = '';
+    })
+    .catch((error) => {
+      console.error("Error writing document: ", error);
+    });
 }
 
-function uploadImage(id){
-  return new Promise(async (resolve,reject) => {
-let file = document.getElementById('file')
-let image = file.files[0]
-let storageRef = storage.ref()
-let imageRef = storageRef.child(`productimage/${id}/${image.name}`);
-await imageRef.put(image)
-let url = await imageRef.getDownloadURL();
-resolve(url)
-})}
+function uploadImage(id) {
+  return new Promise(async (resolve, reject) => {
+    let file = document.getElementById('file')
+    let image = file.files[0]
+    let storageRef = storage.ref()
+    let imageRef = storageRef.child(`productimage/${id}/${image.name}`);
+    await imageRef.put(image)
+    let url = await imageRef.getDownloadURL();
+    resolve(url)
+  })
+}
 
-function getProducts(){
+function getProducts() {
   db.collection("products").get().then((querySnapshot) => {
     querySnapshot.forEach((doc) => {
-    console.log(doc.id, " => ", doc.data());
-    loader.classList.add("d-none");
-    loader.classList.add("w-0");
-    loader.classList.add("p-0");
-    const mainCardDetail = `
-     <div class="col-lg-4 col-md-4 col-sm-12 pr-0 pl-0">
+      console.log(doc.id, " => ", doc.data());
+      loader.classList.add("d-none");
+      loader.classList.add("w-0");
+      loader.classList.add("p-0");
+      if (doc.data().Id === uid) {
+        const mainCardDetail = `
+     <div class="col-lg-4 col-md-8 col-sm-12 pr-0 pl-0">
      <div class="cardsDiv">
          <img src="${doc.data().image}" alt="res-img"/> 
          <h5 class="card-title" id="title">Category: ${doc.data().ItemName}</h5>
@@ -75,121 +82,133 @@ function getProducts(){
          <p style="color: green;" id="ordMsg"></p>
          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the cards content.</p>
          <p id="Price">Rs : ${doc.data().price}</p>
-         <a href="javascript:void(0)" class="orderBtn ${doc.id}" id="orderBtn" onclick="orderfunc(this)">Add To Cart</a>
+         <a href="javascript:void(0)" class="orderBtn ${doc.id}" id="orderBtn" onclick="orderfunc(this)">Add To Cart <i class="fa-solid fa-plus"></i></a>
          </div>
      </div>
     `
-    card.innerHTML += mainCardDetail;
-  
+        card.innerHTML += mainCardDetail;
+      }
+
     });
-});
+  });
 }
 getProducts();
 
-async function register(){
-   await firebase.auth().createUserWithEmailAndPassword(emailEl.value, passwordEl.value)
-  .then(async(userCredential) => {
-    // Signed in 
-    var user = userCredential.user;
-    let uid = user.uid
-    console.log(user)
-    errorMsg.innerText = 'Register Successfully'
-    errorMsg.style.color='green'
-    let obj = {
-        username : userName.value,
-        email : emailEl.value,
-        password : passwordEl.value,
-        uid : uid,
-        phone : usernumber.value,
-        country : usercountry.value,
-        role : userRole.selected  
-    }
-    console.log(obj)
-   await db.collection('users').doc(uid).set(obj)
-    // ...
-  })
-  .catch((error) => {
-    var errorCode = error.code;
-    var errorMessage = error.message;
-    errorMsg.innerText = errorMessage
-    // ..
-  });
+async function register() {
+  await firebase.auth().createUserWithEmailAndPassword(emailEl.value, passwordEl.value)
+    .then(async (userCredential) => {
+      // Signed in 
+      var user = userCredential.user;
+      let uid = user.uid
+      console.log(user)
+      let Url2 = await uploadImageFunc(uid)
+      errorMsg.innerText = 'Register Successfully'
+      errorMsg.style.color = 'green'
+      let obj = {
+        username: userName.value,
+        email: emailEl.value,
+        password: passwordEl.value,
+        uid: uid,
+        phone: usernumber.value,
+        country: usercountry.value,
+        role: userRole.selected,
+        userimage: Url2,
+        userRestaurantName: userRestaurantName.value
+      }
+      console.log(obj)
+      await db.collection('users').doc(uid).set(obj)
+      // ...
+    })
+    .catch((error) => {
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      errorMsg.innerText = errorMessage
+      // ..
+    });
 }
 let role;
-function loginForm(){
+function loginForm() {
   firebase.auth().signInWithEmailAndPassword(emailEl.value, passwordEl.value)
-   .then((userCredential) => {
-     // Signed in
-     var user = userCredential.user;
-     console.log(user.uid , '49')
-     uid = user.uid
-     let docRef = db.collection('users').doc(uid);
+    .then((userCredential) => {
+      // Signed in
+      var user = userCredential.user;
+      console.log(user.uid, '49')
+      uid = user.uid
+      let docRef = db.collection('users').doc(uid);
       docRef.get().then((doc) => {
         if (doc.exists) {
-            let role = doc.data().role
-            console.log("Document data:", doc.data(),role);
-          if(role === true){
+          let role = doc.data().role
+          console.log("Document data:", doc.data(), role);
+          if (role === true) {
             window.location = 'restaurant.html'
           }
-          else{
+          else {
             window.location = 'home.html'
           }
-          }})
-    //  window.location = 'home.html'
-     // ...
-  })
-   .catch((error) => {
-     var errorCode = error.code;
-     var errorMessage = error.message;
-     errorMsg.innerHTML = errorMessage
-   });
- 
- }
+        }
+      })
+      //  window.location = 'home.html'
+      // ...
+    })
+    .catch((error) => {
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      errorMsg.innerHTML = errorMessage
+    });
+
+}
 
 
 
 let userEl = document.getElementById('user')
+let welcomeUser = document.querySelector(".welcomeUser")
 firebase.auth().onAuthStateChanged((user) => {
-    if (user) {
-      // User is signed in, see docs for a list of available properties
-      // https://firebase.google.com/docs/reference/js/firebase.User
-      var uid = user.uid;
-      console.log(user)
-      console.log(uid)
-      let docRef = db.collection('users').doc(uid);
-      docRef.get().then((doc) => {
-        if (doc.exists) {
-            console.log("Document data:", doc.data());
-            let usernameEl = doc.data().username;
-            userEl.innerText = usernameEl
-        } else {
-            // doc.data() will be undefined in this case
-            console.log("No such document!");
-        }
+  if (user) {
+    // User is signed in, see docs for a list of available properties
+    // https://firebase.google.com/docs/reference/js/firebase.User
+    uid = user.uid;
+    console.log(user)
+    console.log(uid)
+    let docRef = db.collection('users').doc(uid);
+    docRef.get().then((doc) => {
+      if (doc.exists) {
+        console.log("Document data:", doc.data());
+        localStorage.setItem("avatar", doc.data().userimage);
+        localStorage.setItem("username", doc.data().username);
+        let usernameEl = doc.data().username;
+        userEl.innerText = usernameEl
+      } else {
+        // doc.data() will be undefined in this case
+        console.log("No such document!");
+      }
     }).catch((error) => {
-        console.log("Error getting document:", error);
+      console.log("Error getting document:", error);
     });
-    
-      
-}})
 
-function signout(){
-    firebase.auth().signOut().then(() => {
-        console.log('SignOut')
-        window.location = 'login.html'
-        // Sign-out successful.
-      }).catch((error) => {
-        errorMsg.innerText = error.message
-      });
-      
+
+  }
+})
+
+function signout() {
+  localStorage.removeItem("avatar");
+  localStorage.removeItem("username");
+  localStorage.clear();
+  firebase.auth().signOut().then(() => {
+    console.log('SignOut')
+    window.location = 'login.html'
+    // Sign-out successful.
+  }).catch((error) => {
+    errorMsg.innerText = error.message
+  });
+
 }
 
 
 const showNav = () => {
-    nav.classList.add("active");
+  nav.classList.add("active");
 }
 const closeNav = () => {
-    nav.classList.remove("active");
+  nav.classList.remove("active");
 }
 
 
@@ -202,9 +221,38 @@ window.onscroll = function () {
 };
 
 
-function orderfunc(productId){
+function orderfunc(productId) {
   let btnClass = productId.getAttribute("class");
   let splitId = btnClass.split("orderBtn ");
-  let productCartId = splitId[1];
+  productCartId.push(splitId[1]);
   console.log(productCartId);
+  productId.innerHTML = `Added To Cart <i class="fa-solid fa-check"></i>`
 }
+
+function showUser() {
+  userDetail.classList.toggle("d-block");
+}
+
+function cart() {
+  //   db.collection("users").doc(uid).set({
+  //     cartId: productCartId
+  // })
+}
+
+function uploadImageFunc(id) {
+  return new Promise(async (resolve, reject) => {
+    let file2 = document.getElementById('file2')
+    let image = file2.files[0]
+    let storageRef = storage.ref()
+    let imageRef = storageRef.child(`userimage/${id}/${image.name}`);
+    await imageRef.put(image)
+    let url = await imageRef.getDownloadURL();
+    resolve(url)
+  })
+}
+
+
+  let avatarUrl = localStorage.getItem("avatar")
+  let usernameLS = localStorage.getItem("username")
+  avatarImg.src = avatarUrl;
+  welcomeUser.innerHTML = `Hello, ${usernameLS}`
