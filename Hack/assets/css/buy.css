@@ -53,7 +53,8 @@ a:focus {
 }
 
 .navbaar img {
-    width: 70px;
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
 }
 
@@ -112,6 +113,21 @@ a:focus {
     border-radius: 50%;
     display: none;
     cursor: pointer;
+}
+
+.logoAnchor {
+    text-decoration: none;
+    color: #fff;
+    font-size: 18px;
+    text-transform: uppercase;
+}
+
+.logoAnchor:hover{
+    color: #fff;
+}
+
+.logoAnchor:focus{
+    color: #fff;
 }
 
 .banner {
@@ -182,6 +198,7 @@ a:focus {
 
 #loader h1 {
     font-size: 50px;
+    color: #fff;
 }
 
 .buyBtn {
@@ -500,6 +517,43 @@ h2.cardsh2 {
 .res-login-fld{
     margin-top: 20px;
     display: none;
+}
+
+.NoProduct{
+    color: #fff;
+    text-align: center;
+    display: block;
+    margin: auto;
+    padding: 20px 0;
+    text-transform: uppercase;
+}
+
+.floatMsg{
+    position: absolute;
+    bottom: 147px;
+    left: -100%;
+    background: #e9a449;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    border: 2px solid #fff;
+    transition: 0.6s;
+}
+
+.floatMsg.active{
+    left: 10px;
+}
+
+.floatMsg i{
+    color: #fff;
+}
+
+.floatMsg h2{
+    margin: 0;
+    text-transform: uppercase;
+    font-size: 14px;
+    color: #fff;
 }
 
 @media (max-width:900px) {

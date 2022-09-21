@@ -12,6 +12,7 @@ let userRole = document.getElementById('user-role')
 console.log(userRole)
 let card = document.querySelector('#cards .row')
 let loader = document.getElementById('loader');
+let loaderh1 = document.querySelector('#loader h1');
 console.log(card)
 let cards = document.getElementById('cards')
 let restaurantName = document.getElementById('restaurantName')
@@ -25,6 +26,9 @@ let productCartId = [];
 let uid;
 let avatarImg = document.getElementById("avatarImg");
 let userRestaurantName = document.getElementById("userRestaurantName");
+let bannerh1 = document.querySelector(".banner h1");
+let floatMsg = document.getElementById("floatMsg");
+let logo = document.getElementById("logo");
 
 async function Addproduct() {
   let id = uid
@@ -36,14 +40,19 @@ async function Addproduct() {
     price: price.value,
     ItemName: ItemName.value,
     category: category.value,
-    delivery: delivery.value,
     order: false,
     Id: uid,
-    image: url
+    image: url,
+    orderCount: 0,
+    dateAdded: new Date(),
+    orderFrom: []
   })
     .then(() => {
       console.log("Document successfully written!");
-      restaurantName.value = '';
+      floatMsg.classList.add("active");
+      setTimeout(()=>{
+        floatMsg.classList.remove("active");
+      },3000)
       price.value = '';
       ItemName.value = '';
     })
@@ -68,11 +77,14 @@ function getProducts() {
   db.collection("products").get().then((querySnapshot) => {
     querySnapshot.forEach((doc) => {
       console.log(doc.id, " => ", doc.data());
-      loader.classList.add("d-none");
-      loader.classList.add("w-0");
-      loader.classList.add("p-0");
+      setTimeout(()=>{
+        loaderh1.innerHTML = "There is no product to show";
+      },5000)
       if (doc.data().Id === uid) {
-        const mainCardDetail = `
+        loader.classList.add("d-none");
+        loader.classList.add("w-0");
+        loader.classList.add("p-0");
+      const mainCardDetail = `
      <div class="col-lg-4 col-md-8 col-sm-12 pr-0 pl-0">
      <div class="cardsDiv">
          <img src="${doc.data().image}" alt="res-img"/> 
@@ -82,7 +94,9 @@ function getProducts() {
          <p style="color: green;" id="ordMsg"></p>
          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the cards content.</p>
          <p id="Price">Rs : ${doc.data().price}</p>
-         <a href="javascript:void(0)" class="orderBtn ${doc.id}" id="orderBtn" onclick="orderfunc(this)">Add To Cart <i class="fa-solid fa-plus"></i></a>
+         <span id="dltError" style="color:green;text-align:center;text-transform:uppercase;padding-bottom: 20px;font-weight: 600;" class="d-none"></span>
+         <a href="javascript:void(0)" class="orderBtn ${doc.id}" id="orderBtn" onclick="delfunc(this)">Delete <i class="fa-solid fa-trash"></i></a>
+         <!-- <a href="javascript:void(0)" class="orderBtn ${doc.id}" id="orderBtn" onclick="orderfunc(this)">Add To Cart <i class="fa-solid fa-plus"></i></a> -->
          </div>
      </div>
     `
@@ -161,7 +175,7 @@ function loginForm() {
 
 
 let userEl = document.getElementById('user')
-let welcomeUser = document.querySelector(".welcomeUser")
+let welcomeUser = document.getElementById("welcomeUser");
 firebase.auth().onAuthStateChanged((user) => {
   if (user) {
     // User is signed in, see docs for a list of available properties
@@ -173,8 +187,10 @@ firebase.auth().onAuthStateChanged((user) => {
     docRef.get().then((doc) => {
       if (doc.exists) {
         console.log("Document data:", doc.data());
+        localStorage.setItem("resName", doc.data().userRestaurantName);
         localStorage.setItem("avatar", doc.data().userimage);
         localStorage.setItem("username", doc.data().username);
+        restaurantName.value = doc.data().userRestaurantName;
         let usernameEl = doc.data().username;
         userEl.innerText = usernameEl
       } else {
@@ -192,6 +208,7 @@ firebase.auth().onAuthStateChanged((user) => {
 function signout() {
   localStorage.removeItem("avatar");
   localStorage.removeItem("username");
+  localStorage.removeItem("resName");
   localStorage.clear();
   firebase.auth().signOut().then(() => {
     console.log('SignOut')
@@ -229,6 +246,24 @@ function orderfunc(productId) {
   productId.innerHTML = `Added To Cart <i class="fa-solid fa-check"></i>`
 }
 
+function delfunc(productId) {
+  let dltError = document.getElementById("dltError");
+  let btnClass = productId.getAttribute("class");
+  let splitId = btnClass.split("orderBtn ");
+  let dltId = splitId[1];
+  console.log(dltId);
+  db.collection("products").doc(dltId).delete().then(() => {
+    dltError.classList.remove("d-none");
+    dltError.classList.add("d-block")
+    dltError.innerHTML = "Deleted Successfully";
+    getProducts();
+}).catch((error) => {
+  dltError.innerHTML = error;
+  dltError.style.color = "red";
+});
+
+}
+
 function showUser() {
   userDetail.classList.toggle("d-block");
 }
@@ -252,7 +287,11 @@ function uploadImageFunc(id) {
 }
 
 
-  let avatarUrl = localStorage.getItem("avatar")
-  let usernameLS = localStorage.getItem("username")
+  let avatarUrl = localStorage.getItem("avatar");
+  let usernameLS = localStorage.getItem("username");
+  let resName = localStorage.getItem("resName");
+  bannerh1.innerHTML = `Welcome, ${usernameLS}`;
   avatarImg.src = avatarUrl;
-  welcomeUser.innerHTML = `Hello, ${usernameLS}`
+  logo.src = avatarUrl;
+  console.log(usernameLS);
+  welcomeUser.innerHTML = `Hello, ${usernameLS}`;

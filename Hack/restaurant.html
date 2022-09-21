@@ -41,14 +41,13 @@
 
 
     <div class="navbaar">
-        <a href="restaurant.html"><img src="assets/images/logo.jpg" alt="logo"></a>
+        <a href="restaurant.html" class="logoAnchor">Food Website</a>
         <ul>
             <i class="fa-solid fa-xmark" onclick="closeNav()"></i>
             <li><a href="restaurant.html">Home</a></li>
             <li><a href="#">About</a></li>
             <li><a href="#">Contact</a></li>
             <!-- <li><i class="fa-solid fa-cart-shopping d-block" onclick="cart()"></i></li> -->
-            <li class="welcomeUser">Hello, </li>
         </ul>
         <li class="userDetailLi">
             <i class="fa-solid fa-bars" onclick="showNav()"></i>
@@ -81,7 +80,7 @@
         </label>
         </div>
         <div class="productDIV">
-            <input type="text" name="RestaurantName" id="restaurantName" placeholder="Enter Restaurant Name">
+            <input type="text" name="RestaurantName" id="restaurantName" placeholder="Enter Restaurant Name" readonly>
         </div>
         <div class="productDIV">
             <input type="text" name="Price" id="price" placeholder="Enter Product Price">
@@ -98,15 +97,22 @@
                 <option class="option" value="MilkShake">Milk Shake</option>
                 <option class="option" value="JuiceShop">Juice Shop</option>
                 <option class="option" value="FreshFruits">Fresh Fruits</option>
+                <option class="option" value="Dairy">Dairy</option>
+                <option class="option" value="Grocery">Grocery</option>
+                <option class="option" value="Bakery">Bakery</option>
+                <option class="option" value="Snacks">Snacks</option>
             </select>
         </div>
         <div class="productDIV DeliveryDIV">
-            <select name="delivery" id="delivery">
+            <!-- <select name="delivery" id="delivery">
                 <option value="Free">Free</option>
                 <option value="Paid">Paid</option>
-            </select>
+            </select> -->
             <button onclick="Addproduct()">ADD PRODUCT</button>
         </div>
+        <div class="floatMsg" id="floatMsg">
+            <h2>Product Added Successfully <i class="fa-solid fa-check"></i></h2>
+        </div>    
     </div>
     </div>
 
