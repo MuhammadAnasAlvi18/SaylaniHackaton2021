@@ -12,7 +12,7 @@ let userRole = document.getElementById('user-role')
 console.log(userRole)
 let card = document.querySelector('#cards .row')
 let loader = document.getElementById('loader');
-let loaderh1 = document.querySelector('#loader h1');
+let loaderh1 = document.getElementById('loaderh1');
 console.log(card)
 let cards = document.getElementById('cards')
 let restaurantName = document.getElementById('restaurantName')
@@ -27,8 +27,10 @@ let uid;
 let avatarImg = document.getElementById("avatarImg");
 let userRestaurantName = document.getElementById("userRestaurantName");
 let bannerh1 = document.querySelector(".banner h1");
+let bannerSpan = document.getElementById("bannerSpan");
 let floatMsg = document.getElementById("floatMsg");
 let logo = document.getElementById("logo");
+let ItemDesc = document.getElementById("ItemDesc");
 
 async function Addproduct() {
   let id = uid
@@ -39,6 +41,7 @@ async function Addproduct() {
     restaurantName: restaurantName.value,
     price: price.value,
     ItemName: ItemName.value,
+    ItemDesc : ItemDesc.value,
     category: category.value,
     order: false,
     Id: uid,
@@ -55,6 +58,7 @@ async function Addproduct() {
       },3000)
       price.value = '';
       ItemName.value = '';
+      ItemDesc.value = ''
     })
     .catch((error) => {
       console.error("Error writing document: ", error);
@@ -77,9 +81,6 @@ function getProducts() {
   db.collection("products").get().then((querySnapshot) => {
     querySnapshot.forEach((doc) => {
       console.log(doc.id, " => ", doc.data());
-      setTimeout(()=>{
-        loaderh1.innerHTML = "There is no product to show";
-      },5000)
       if (doc.data().Id === uid) {
         loader.classList.add("d-none");
         loader.classList.add("w-0");
@@ -88,11 +89,12 @@ function getProducts() {
      <div class="col-lg-4 col-md-8 col-sm-12 pr-0 pl-0">
      <div class="cardsDiv">
          <img src="${doc.data().image}" alt="res-img"/> 
-         <h5 class="card-title" id="title">Category: ${doc.data().ItemName}</h5>
+         <h5 class="card-title" id="title">Category: ${doc.data().category}</h5>
+         <p class="card-text">Recipe: ${doc.data().ItemName}</p>         
          <h4 class="card-title" id="title">Restaurant: ${doc.data().restaurantName}</h4>
          <p id="ordMSG></p>
          <p style="color: green;" id="ordMsg"></p>
-         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the cards content.</p>
+         <p class="card-text">${doc.data().ItemDesc? doc.data().ItemDesc : ""}</p>
          <p id="Price">Rs : ${doc.data().price}</p>
          <span id="dltError" style="color:green;text-align:center;text-transform:uppercase;padding-bottom: 20px;font-weight: 600;" class="d-none"></span>
          <a href="javascript:void(0)" class="orderBtn ${doc.id}" id="orderBtn" onclick="delfunc(this)">Delete <i class="fa-solid fa-trash"></i></a>
@@ -101,7 +103,7 @@ function getProducts() {
      </div>
     `
         card.innerHTML += mainCardDetail;
-      }
+    }
 
     });
   });
@@ -290,7 +292,8 @@ function uploadImageFunc(id) {
   let avatarUrl = localStorage.getItem("avatar");
   let usernameLS = localStorage.getItem("username");
   let resName = localStorage.getItem("resName");
-  bannerh1.innerHTML = `Welcome, ${usernameLS}`;
+  // bannerh1.innerHTML = `Welcome, `;
+  bannerSpan.innerHTML = usernameLS;
   avatarImg.src = avatarUrl;
   logo.src = avatarUrl;
   console.log(usernameLS);

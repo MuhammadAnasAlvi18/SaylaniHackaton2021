@@ -461,6 +461,21 @@ h2.cardsh2 {
     border: 2px solid #fff;
 }
 
+.addProduct textarea{
+    width: 50%;
+    height: 100%;
+    border: none;
+    background: #e9a449;
+    /* padding: 0 6px; */
+    outline:none;
+    transition: 0.5s;
+    color: #fff !important;
+    padding: 10px;
+    margin: 10px 0;
+    font-size: 18px;
+    border: 2px solid #fff;
+}
+
 .addProduct select{
     background: #e9a449;
     /* padding: 10px 20px; */
@@ -488,6 +503,10 @@ h2.cardsh2 {
 }
 
 .addProduct input::placeholder{
+    color: #fff;
+}
+
+.addProduct textarea::placeholder{
     color: #fff;
 }
 
@@ -529,8 +548,8 @@ h2.cardsh2 {
 }
 
 .floatMsg{
-    position: absolute;
-    bottom: 147px;
+    position: fixed;
+    bottom: 30px;
     left: -100%;
     background: #e9a449;
     display: flex;
@@ -554,6 +573,34 @@ h2.cardsh2 {
     text-transform: uppercase;
     font-size: 14px;
     color: #fff;
+}
+
+.banner #bannerSpan{
+    font-size: 30px !important;
+}
+
+.DeliveryDIV span {
+    border-radius: 50%;
+    padding: 10px;
+    border: 3px solid #fff;
+    border-left: 3px solid transparent;
+    font-size: 7px !important;
+    margin-left: 6px;
+    animation: rotate 3s linear infinite;
+}
+
+@keyframes rotate{
+    0%{
+        transform: rotate(0deg);
+    }
+    100%{
+        transform: rotate(360deg);
+}
+}
+
+.addProduct button{
+    display: flex;
+    align-items: center;
 }
 
 @media (max-width:900px) {

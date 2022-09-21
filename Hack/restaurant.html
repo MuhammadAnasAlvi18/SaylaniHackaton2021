@@ -63,7 +63,7 @@
     </div>
 
     <div class="banner">
-        <h1>The Food Camp</h1>
+        <h1>Welcome, <span id="bannerSpan"></span></h1>
         <h5>Order Tasty And Fresh Food Anytime</h5>
         <a href="#">Buy Now <i class="fa-solid fa-cart-shopping"></i></a>
     </div>
@@ -88,6 +88,9 @@
         <div class="productDIV">
             <input type="text" name="ItemName" id="ItemName" placeholder="Enter Item Name">
         </div>
+        <div class="productDIV">
+            <textarea name="ItemDesc" id="ItemDesc" cols="30" rows="5" placeholder="Enter Item Description"></textarea>
+        </div>
         <div class="productDIV category">
             <select name="category" id="category">
                 <option class="option" value="Pizza">Pizza</option>
@@ -103,12 +106,8 @@
                 <option class="option" value="Snacks">Snacks</option>
             </select>
         </div>
-        <div class="productDIV DeliveryDIV">
-            <!-- <select name="delivery" id="delivery">
-                <option value="Free">Free</option>
-                <option value="Paid">Paid</option>
-            </select> -->
-            <button onclick="Addproduct()">ADD PRODUCT</button>
+        <div class="productDIV DeliveryDIV d-flex align-items-center">
+            <button onclick="Addproduct()">ADD PRODUCT <span></span></button>
         </div>
         <div class="floatMsg" id="floatMsg">
             <h2>Product Added Successfully <i class="fa-solid fa-check"></i></h2>
