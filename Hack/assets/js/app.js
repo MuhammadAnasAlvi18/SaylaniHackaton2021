@@ -1,7 +1,6 @@
 let userName = document.getElementById('username')
 let emailEl = document.getElementById('email')
 let passwordEl = document.getElementById('password')
-let errorMsg = document.getElementById('error')
 let storage = firebase.storage();
 let auth = firebase.auth();
 var db = firebase.firestore();
@@ -29,10 +28,11 @@ let userRestaurantName = document.getElementById("userRestaurantName");
 let bannerh1 = document.querySelector(".banner h1");
 let bannerSpan = document.getElementById("bannerSpan");
 let floatMsg = document.getElementById("floatMsg");
-let logo = document.getElementById("logo");
 let ItemDesc = document.getElementById("ItemDesc");
+let DeliveryDIVspan = document.querySelector(".DeliveryDIV span");
 
 async function Addproduct() {
+  DeliveryDIVspan.classList.remove("d-none");
   let id = uid
   let url = await uploadImage(id)
   console.log(url)
@@ -43,22 +43,23 @@ async function Addproduct() {
     ItemName: ItemName.value,
     ItemDesc : ItemDesc.value,
     category: category.value,
-    order: false,
     Id: uid,
     image: url,
     orderCount: 0,
-    dateAdded: new Date(),
+    time : new Date().getTime(),
     orderFrom: []
   })
     .then(() => {
       console.log("Document successfully written!");
       floatMsg.classList.add("active");
+      DeliveryDIVspan.classList.add("d-none");
       setTimeout(()=>{
         floatMsg.classList.remove("active");
       },3000)
       price.value = '';
       ItemName.value = '';
-      ItemDesc.value = ''
+      ItemDesc.value = '',
+      url = ""
     })
     .catch((error) => {
       console.error("Error writing document: ", error);
@@ -85,17 +86,36 @@ function getProducts() {
         loader.classList.add("d-none");
         loader.classList.add("w-0");
         loader.classList.add("p-0");
+        let dated = doc.data().time;
+        let Cdate = new Date().getTime();
+        let finalDate = Cdate - dated;
+        let days = Math.floor(finalDate / (1000 * 3600 * 24));
+        let hours = Math.floor(finalDate/1000/60/60); 
+        let minutes = Math.floor((finalDate/1000)/60); 
+        let seconds = Math.floor((finalDate/1000)); 
+        let day = days < 2 ? "day" : "days";
+        let hour = hours < 2 ? "hour" : "hours";
+        let min = minutes < 2 ? "minute" : "minutes";
+        let sec = seconds < 2 ? "second" : "seconds";
+
+        console.log(hour , min , sec , day);
+
       const mainCardDetail = `
-     <div class="col-lg-4 col-md-8 col-sm-12 pr-0 pl-0">
+     <div class="col-lg-4 col-md-8 col-sm-12">
      <div class="cardsDiv">
-         <img src="${doc.data().image}" alt="res-img"/> 
-         <h5 class="card-title" id="title">Category: ${doc.data().category}</h5>
-         <p class="card-text">Recipe: ${doc.data().ItemName}</p>         
-         <h4 class="card-title" id="title">Restaurant: ${doc.data().restaurantName}</h4>
+         <img src="${doc.data().image}" alt="res-img"/>
+         <div class="uploadCat">
+         ${hours === 0 ? `${seconds < 60 ? `<span class='pr-2'>Uploaded: ${seconds} ${sec} ago </span>` : `<span class='pr-2'>Uploaded: ${minutes} ${min} ago </span>`}` : `${hours > 24 ? `<span class='pr-2'>Uploaded: ${days} ${day} ago </span>` : `<span class='pr-2'>Uploaded: ${hours} ${hour} ago </span>`}`}
+         <span>Category: ${doc.data().category}</span>
+         </div>
+         <div class="uploadCat pb-5">
+         <span>Restaurant: ${doc.data().restaurantName}</span>
+         <span>RS : ${doc.data().price}</span>
+         </div>
+         <h4 class='cardH4'>${doc.data().ItemName}</h4> 
          <p id="ordMSG></p>
          <p style="color: green;" id="ordMsg"></p>
-         <p class="card-text">${doc.data().ItemDesc? doc.data().ItemDesc : ""}</p>
-         <p id="Price">Rs : ${doc.data().price}</p>
+         <p class="card-text card-para">${doc.data().ItemDesc? doc.data().ItemDesc : ""} </p>
          <span id="dltError" style="color:green;text-align:center;text-transform:uppercase;padding-bottom: 20px;font-weight: 600;" class="d-none"></span>
          <a href="javascript:void(0)" class="orderBtn ${doc.id}" id="orderBtn" onclick="delfunc(this)">Delete <i class="fa-solid fa-trash"></i></a>
          <!-- <a href="javascript:void(0)" class="orderBtn ${doc.id}" id="orderBtn" onclick="orderfunc(this)">Add To Cart <i class="fa-solid fa-plus"></i></a> -->
@@ -113,32 +133,36 @@ getProducts();
 async function register() {
   await firebase.auth().createUserWithEmailAndPassword(emailEl.value, passwordEl.value)
     .then(async (userCredential) => {
-      // Signed in 
+      // Signed in '
       var user = userCredential.user;
       let uid = user.uid
       console.log(user)
       let Url2 = await uploadImageFunc(uid)
-      errorMsg.innerText = 'Register Successfully'
-      errorMsg.style.color = 'green'
       let obj = {
         username: userName.value,
         email: emailEl.value,
         password: passwordEl.value,
         uid: uid,
         phone: usernumber.value,
-        country: usercountry.value,
+        city: usercountry.value,
         role: userRole.selected,
         userimage: Url2,
-        userRestaurantName: userRestaurantName.value
+        userRestaurantName: userRestaurantName.value,
+        joined: new Date().getTime(),
+        orderCompleted: 0
       }
       console.log(obj)
       await db.collection('users').doc(uid).set(obj)
+      userName.value = "";
+      emailEl.value = "";
+      passwordEl.value = "";
+      usernumber.value = "";
+      usercountry.value = ""
       // ...
     })
     .catch((error) => {
       var errorCode = error.code;
       var errorMessage = error.message;
-      errorMsg.innerText = errorMessage
       // ..
     });
 }
@@ -169,7 +193,6 @@ function loginForm() {
     .catch((error) => {
       var errorCode = error.code;
       var errorMessage = error.message;
-      errorMsg.innerHTML = errorMessage
     });
 
 }
@@ -217,7 +240,6 @@ function signout() {
     window.location = 'login.html'
     // Sign-out successful.
   }).catch((error) => {
-    errorMsg.innerText = error.message
   });
 
 }
@@ -246,6 +268,10 @@ function orderfunc(productId) {
   productCartId.push(splitId[1]);
   console.log(productCartId);
   productId.innerHTML = `Added To Cart <i class="fa-solid fa-check"></i>`
+
+  //   db.collection("products").doc("5XIue8r9Z7LdbeqH9at8").update({
+  //   orderCount: 10
+  // } , { merge: true });
 }
 
 function delfunc(productId) {
@@ -258,7 +284,6 @@ function delfunc(productId) {
     dltError.classList.remove("d-none");
     dltError.classList.add("d-block")
     dltError.innerHTML = "Deleted Successfully";
-    getProducts();
 }).catch((error) => {
   dltError.innerHTML = error;
   dltError.style.color = "red";
@@ -274,6 +299,9 @@ function cart() {
   //   db.collection("users").doc(uid).set({
   //     cartId: productCartId
   // })
+
+  console.log("CART CLICKED");
+
 }
 
 function uploadImageFunc(id) {
@@ -295,6 +323,6 @@ function uploadImageFunc(id) {
   // bannerh1.innerHTML = `Welcome, `;
   bannerSpan.innerHTML = usernameLS;
   avatarImg.src = avatarUrl;
-  logo.src = avatarUrl;
   console.log(usernameLS);
   welcomeUser.innerHTML = `Hello, ${usernameLS}`;
+  

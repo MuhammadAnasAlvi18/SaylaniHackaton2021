@@ -89,17 +89,17 @@
             <input type="text" name="ItemName" id="ItemName" placeholder="Enter Item Name">
         </div>
         <div class="productDIV">
-            <textarea name="ItemDesc" id="ItemDesc" cols="30" rows="5" placeholder="Enter Item Description"></textarea>
+            <textarea name="ItemDesc" id="ItemDesc" cols="30" rows="5" placeholder="Enter Item Description (optional)"></textarea>
         </div>
         <div class="productDIV category">
             <select name="category" id="category">
                 <option class="option" value="Pizza">Pizza</option>
                 <option class="option" value="Fast Food">Fast Food</option>
                 <option class="option" value="Burger">Burger</option>
-                <option class="option" value="FrenchFries">French Fries</option>
-                <option class="option" value="MilkShake">Milk Shake</option>
-                <option class="option" value="JuiceShop">Juice Shop</option>
-                <option class="option" value="FreshFruits">Fresh Fruits</option>
+                <option class="option" value="French Fries">French Fries</option>
+                <option class="option" value="Milk Shake">Milk Shake</option>
+                <option class="option" value="Juice">Juice</option>
+                <option class="option" value="Fresh Fruits">Fresh Fruits</option>
                 <option class="option" value="Dairy">Dairy</option>
                 <option class="option" value="Grocery">Grocery</option>
                 <option class="option" value="Bakery">Bakery</option>
@@ -107,7 +107,7 @@
             </select>
         </div>
         <div class="productDIV DeliveryDIV d-flex align-items-center">
-            <button onclick="Addproduct()">ADD PRODUCT <span></span></button>
+            <button onclick="Addproduct()">ADD PRODUCT <span class="d-none"></span></button>
         </div>
         <div class="floatMsg" id="floatMsg">
             <h2>Product Added Successfully <i class="fa-solid fa-check"></i></h2>

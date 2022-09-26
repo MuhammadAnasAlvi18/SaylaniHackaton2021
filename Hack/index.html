@@ -53,11 +53,10 @@
     <h1>Register</h1>
     <div class="imgDiv">
     <label>
-    <img src="assets/images/upload.jpg" alt="" id="img">
+    <img src="assets/images/avatar.png" alt="" id="img">
     <input type="file" id="file2" onchange="prevImg()">
     </label> 
     </div>
-    <span id="error" style="color: red;"></span>
     <div class="login-fld">
       <input type="text" id="username" required placeholder="Enter Your Username" />
      </div>
@@ -71,7 +70,7 @@
    <input type="number" name="number" id="usernumber" placeholder="Enter Your Number">
   </div>
   <div class="login-fld">
-    <input type="text" name="country" id="usercountry" placeholder="Enter Your Country">
+    <input type="text" name="country" id="usercountry" placeholder="Enter Your City">
    </div>
    <div class="role-fld">
      <select name="userrole" onchange="getRole()" id="roleUser">
@@ -82,8 +81,9 @@
    <div class="login-fld res-login-fld">
     <input type="text" name="restaurant" id="userRestaurantName" placeholder="Enter Your Restaurant Name">
    </div><br>
-    <div class="login-btn">
+    <div class="login-btn position-relative d-flex align-items-center">
       <input type="submit" value="Register" onclick="register()">
+      <span class="d-none" id="Regloader"></span>
     </div>
     <p>Already have an Account ?
     <a href="login.html">Log in</a></p>
