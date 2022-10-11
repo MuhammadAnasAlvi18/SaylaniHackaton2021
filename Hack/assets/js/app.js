@@ -104,22 +104,21 @@ function getProducts() {
         console.log(hour , min , sec , day);
 
       const mainCardDetail = `
-     <div class="col-lg-4 col-md-8 col-sm-12">
+     <div class="col-lg-4 col-md-8 col-sm-12 mb-5">
      <div class="cardsDiv">
          <img src="${doc.data().image}" alt="res-img"/>
          <div class="uploadCat">
-         ${hours === 0 ? `${seconds < 60 ? `<span class='pr-2'>Uploaded: ${seconds} ${sec} ago </span>` : `<span class='pr-2'>Uploaded: ${minutes} ${min} ago </span>`}` : `${hours > 24 ? `<span class='pr-2'>Uploaded: ${days} ${day} ago </span>` : `<span class='pr-2'>Uploaded: ${hours} ${hour} ago </span>`}`}
+         ${hours === 0 ? `${seconds < 60 ? `${seconds < 30 ? `<span class='pr-2'>Uploaded: Just Now </span>` : `<span class='pr-2'>Uploaded: ${seconds} ${sec} ago </span>`}` : `<span class='pr-2'>Uploaded: ${minutes} ${min} ago </span>`}` : `${hours > 24 ? `<span class='pr-2'>Uploaded: ${days} ${day} ago </span>` : `<span class='pr-2'>Uploaded: ${hours} ${hour} ago </span>`}`}
          <span>Category: ${doc.data().category}</span>
          </div>
          <div class="uploadCat pb-5">
          <span>Restaurant: ${doc.data().restaurantName}</span>
-         <span>RS : ${doc.data().price}</span>
+         <span>Price : ${doc.data().price} Rs</span>
          </div>
          <h4 class='cardH4'>${doc.data().ItemName}</h4> 
          <p id="ordMSG></p>
          <p style="color: green;" id="ordMsg"></p>
          <p class="card-text card-para">${doc.data().ItemDesc? doc.data().ItemDesc : ""} </p>
-         <span id="dltError" style="color:green;text-align:center;text-transform:uppercase;padding-bottom: 20px;font-weight: 600;" class="d-none"></span>
          <a href="javascript:void(0)" class="orderBtn ${doc.id}" id="orderBtn" onclick="delfunc(this)">Delete <i class="fa-solid fa-trash"></i></a>
          <!-- <a href="javascript:void(0)" class="orderBtn ${doc.id}" id="orderBtn" onclick="orderfunc(this)">Add To Cart <i class="fa-solid fa-plus"></i></a> -->
          </div>
@@ -150,7 +149,7 @@ function getAllproducts(){
           </div>
           <h3>${doc.data().ItemName}</h3>
           <h4>${doc.data().category}</h4>
-          <h5 class="price">RS : ${doc.data().price}</h5>
+          <h5 class="price">Price : ${doc.data().price} Rs</h5>
           <div class="plusMinus"><a href="javascript:void(0)">-</a><input type="text" value="0" readonly><a href="javascript:void(0)">+</a></div>
           <div class="addtoCartAnchorDiv"><a href="javascript:void(0)" class="addToCartAnchor ${doc.id}" onclick="orderfunc(this)">Add to Cart</a></div>
       </div>
@@ -318,15 +317,16 @@ function orderfunc(productId) {
 }
 
 function delfunc(productId) {
-  let dltError = document.getElementById("dltError");
+  let del_popup = document.getElementById("del_popup");
+  del_popup.classList.add("active")
   let btnClass = productId.getAttribute("class");
   let splitId = btnClass.split("orderBtn ");
   let dltId = splitId[1];
   console.log(dltId);
   db.collection("products").doc(dltId).delete().then(() => {
-    dltError.classList.remove("d-none");
-    dltError.classList.add("d-block")
-    dltError.innerHTML = "Deleted Successfully";
+    setTimeout(()=>{
+      del_popup.classList.remove("active")
+    },2000)
 }).catch((error) => {
   dltError.innerHTML = error;
   dltError.style.color = "red";
