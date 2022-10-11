@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript</title>
+    <link rel="stylesheet" href="./assets/css/buy.css">
+    <link rel="stylesheet" href="./assets/css/layout.css">
+    <script src="https://kit.fontawesome.com/1958b1fb84.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital@1&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-storage.js"></script>
+
+    <script>
+        var firebaseConfig = {
+            apiKey: "AIzaSyAdYd7LAqtkJemEn8GHJaEV8kRhn7HzDVI",
+            authDomain: "practice-d9684.firebaseapp.com",
+            projectId: "practice-d9684",
+            storageBucket: "practice-d9684.appspot.com",
+            messagingSenderId: "235831722999",
+            appId: "1:235831722999:web:fc52eb6e03792972f964f2",
+            measurementId: "G-WR0P7ZFX6B"
+        };
+        firebase.initializeApp(firebaseConfig);
+        firebase.analytics();
+    </script>
+
+</head>
+
+<body>
+    <!-- <nav class="nav">
+    <div class="container-fluid navbar">
+        <div class="row navbar-row">
+            <div class="col-sm-3 nav-logo">
+                <img src="assets/images/logo.jpg">
+            </div>
+            <div class="col-sm-9 nav-links">
+                <ul>
+                    <li><a href="home.html">HOME</a></li>
+                    <li><a href="#productsh2">ABOUT</a></li>
+                    <li><a href="buy.html">BUY</a></li>
+                    <li><a href="">CONTACT</a></li>
+                    <li><button onclick="signout()">LOGOUT</button></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="text">
+    <p>Up For A BITE</p>
+    <h2>Order Tasty And Fresh Food Anytime!</h2>
+    <a href="buy.html"><button class="buyBtn">Buy Now</button></a>
+</div>
+</nav> -->
+
+    <div class="navbaar">
+        <a href="home.html" class="logoAnchor">Food Website</a>
+        <ul>
+            <i class="fa-solid fa-xmark" onclick="closeNav()"></i>
+            <li><a href="home.html">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#">Contact</a></li>
+            <li onclick="cart()"><a href="javascript:void(0)">Cart <i
+                        class="fa-solid fa-cart-shopping d-block ml-3"></i></a></li>
+        </ul>
+        <li class="userDetailLi">
+            <i class="fa-solid fa-bars" onclick="showNav()"></i>
+            <img src="assets/images/avatar.png" id="avatarImg" onclick="showUser()" alt="user-avatar">
+            <div class="userDetail d-none">
+                <div class="userDetailDiv Profile">
+                    <h3>Profile</h3>
+                </div>
+                <div class="userDetailDiv Logout" onclick="signout()">
+                    <h3>Logout</h3>
+                </div>
+            </div>
+        </li>
+    </div>
+
+    <div class="banner customerBanner">
+        <h1>Welcome, <span id="bannerSpan"></span></h1>
+        <h5>Order Tasty And Fresh Food Anytime</h5>
+        <a href="buy.html">Buy Now <i class="fa-solid fa-cart-shopping"></i></a>
+    </div>
+
+    <div class="aboutSection" id="about">
+        <div class="h2DIv" style="padding-bottom: 50px;">
+            <h2 class="cardsh2">About</h2>
+        </div>
+        <div class="container">
+            <div class="aboutShad" data-aos="fade-up" data-aos-duration="800">
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <div class="aboutTxt">
+                            <h3>Food Website</h3>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim vero laborum, facere ea
+                                quis
+                                aliquid cum error maiores distinctio id tempora nam quisquam. Voluptas architecto
+                                officiis
+                                tenetur quidem consequuntur mollitiaLorem ipsum dolor sit amet, consectetur adipisicing
+                                elit. Enim vero laborum, facere ea quis
+                                aliquid cum error maiores distinctio id tempora nam quisquam. Voluptas architecto
+                                officiis
+                                tenetur quidem consequuntur mollitiaLorem ipsum dolor sit amet, consectetur adipisicing
+                                elit. Enim vero laborum, facere ea quis
+                                aliquid cum error maiores distinctio id tempora nam quisquam. Voluptas architecto
+                                officiis
+                                tenetur quidem consequuntur mollitia!</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <div class="aboutImg">
+                            <img src="assets/images/banner.jpg" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="./assets/js/app.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+</body>
+
+</html>

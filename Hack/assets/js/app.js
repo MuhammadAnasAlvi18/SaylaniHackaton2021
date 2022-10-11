@@ -30,6 +30,9 @@ let bannerSpan = document.getElementById("bannerSpan");
 let floatMsg = document.getElementById("floatMsg");
 let ItemDesc = document.getElementById("ItemDesc");
 let DeliveryDIVspan = document.querySelector(".DeliveryDIV span");
+let addFav = document.querySelectorAll(".buyCards .fa-heart");
+let rowGet = document.querySelector(".rowGet");
+let buyLoader = document.querySelector(".buyLoader");
 
 async function Addproduct() {
   DeliveryDIVspan.classList.remove("d-none");
@@ -130,6 +133,38 @@ function getProducts() {
 }
 getProducts();
 
+
+function getAllproducts(){
+  db.collection("products").get().then((querySnapshot) => {
+    querySnapshot.forEach((doc) => {
+      console.log(doc.id, " => ", doc.data());
+      const mainCardDetails = `
+      <div class="col-lg-4 col-md-6 mb-4">
+      <div class="buyCards">
+          <i class="fa-regular fa-heart"></i>
+          <div class="moreRes"><span>more from this restaurant</span></div>
+          <img src="${doc.data().image}" alt="card-img">
+          <div class="BuycardSec">
+              <span>Restaurant : ${doc.data().restaurantName}</span>
+              <span>Reviews : 50+</span>
+          </div>
+          <h3>${doc.data().ItemName}</h3>
+          <h4>${doc.data().category}</h4>
+          <h5 class="price">RS : ${doc.data().price}</h5>
+          <div class="plusMinus"><a href="javascript:void(0)">-</a><input type="text" value="0" readonly><a href="javascript:void(0)">+</a></div>
+          <div class="addtoCartAnchorDiv"><a href="javascript:void(0)" class="addToCartAnchor ${doc.id}" onclick="orderfunc(this)">Add to Cart</a></div>
+      </div>
+  </div>
+    `
+    rowGet.innerHTML += mainCardDetails;
+    buyLoader.classList.add("d-none");
+    
+    });
+  });
+}
+
+getAllproducts()
+
 async function register() {
   await firebase.auth().createUserWithEmailAndPassword(emailEl.value, passwordEl.value)
     .then(async (userCredential) => {
@@ -149,7 +184,8 @@ async function register() {
         userimage: Url2,
         userRestaurantName: userRestaurantName.value,
         joined: new Date().getTime(),
-        orderCompleted: 0
+        orderCompleted: 0,
+        myCart:[]
       }
       console.log(obj)
       await db.collection('users').doc(uid).set(obj)
@@ -264,10 +300,17 @@ window.onscroll = function () {
 
 function orderfunc(productId) {
   let btnClass = productId.getAttribute("class");
-  let splitId = btnClass.split("orderBtn ");
+  let splitId = btnClass.split("addToCartAnchor ");
   productCartId.push(splitId[1]);
   console.log(productCartId);
   productId.innerHTML = `Added To Cart <i class="fa-solid fa-check"></i>`
+
+  let uniq = [...new Set(productCartId)];
+  console.log(uniq);
+
+  db.collection("users").doc(uid).update({
+    myCart : [...uniq]
+  } , { merge: true })
 
   //   db.collection("products").doc("5XIue8r9Z7LdbeqH9at8").update({
   //   orderCount: 10

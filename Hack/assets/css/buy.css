@@ -659,6 +659,10 @@ h2.cardsh2 {
 
 @media (max-width:900px) {
 
+    .cartCount {
+        background: #ffff !important;
+        color: #e9a449;
+    }
     .userDetailLi{
         display: flex;
         align-items: center;
@@ -912,10 +916,9 @@ padding: 10px;
 
 .buySection{
     width: 100%;
-    height: 100vh;
     background: url(/assets/images/banner.jpg);
     background-position: center;
-    background-size: cover;
+    background-size: cover;;
 }
 
 .buySectionOverlay{
@@ -923,7 +926,144 @@ padding: 10px;
     height: 100%;
     background: rgba(0, 0, 0, 0.5);
     backdrop-filter: blur(5px);
-    padding-top: 50px;
+    padding: 90px 0;
+}
+
+.buySection h2{
+    color: #fff;
+    font-size: 40px;
+    text-align: center;
+    padding-bottom: 40px;
+}
+
+.buyCards{
+    width: 100%;
+    background: #fff;
+    position: relative;
+    /* padding-bottom: 50px; */
+}
+
+.buyCards img{
+    width: 100%;
+    height: 100%;
+}
+
+.BuycardSec{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.moreRes{
+    padding: 6px;
+    box-shadow: 0px 0px 0px 3px rgba(233,164,73,0.75) inset;
+    -webkit-box-shadow: 0px 0px 0px 3px rgba(233,164,73,0.75) inset;
+    -moz-box-shadow: 0px 0px 0px 3px rgba(233,164,73,0.75) inset;
+    transition: 0.5s ease;
+    cursor: pointer;
+}
+
+.moreRes:hover{
+    background: #e9a449;
+    box-shadow: 0px 0px 0px 3px rgba(255,255,255,0.75) inset;
+-webkit-box-shadow: 0px 0px 0px 3px rgba(255,255,255,0.75) inset;
+-moz-box-shadow: 0px 0px 0px 3px rgba(255,255,255,0.75) inset;
+}
+
+.moreRes:hover span{
+    color: #fff;
+}
+
+.moreRes span{
+    text-transform: capitalize;
+    color: #e9a449;
+    cursor: pointer;
+    padding-left: 10px;
+}
+
+.buyCards .fa-heart{
+    position: absolute;
+    font-size: 30px;
+    right: 10px;
+    top: 45px;
+    color: #fff;
+    cursor: pointer;
+}
+
+.buyCards h3{
+    text-align: center;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.buyCards h4{
+    text-align: center;
+    font-size: 16px;
+}
+
+.buyCards .price{
+    text-align: center;
+    font-size: 27px;
+    font-weight: 700;
+}
+
+.plusMinus{
+    display: flex;
+    align-content: center;
+    justify-content: center;
+}
+
+.plusMinus a {
+    font-size: 30px;
+    color: #e9a449;
+    font-weight: 600;
+    padding: 10px 0 0 0;
+}
+
+.plusMinus input{
+    width: 15%;
+    text-align: center;
+    font-size: 24px;
+    margin: 10px 10px ;
+    outline: none;
+}
+
+.plusMinus a:hover{
+    color: #e9a449;
+}
+
+.plusMinus a:focus{
+    color: #e9a449;
+}
+
+.addtoCartAnchorDiv{
+    display: flex;
+    justify-content: center;
+}
+
+.addToCartAnchor{
+    color: #fff;
+    background: #e9a449;
+    padding: 10px 50px;
+    display: inline-block;
+    margin: 20px 0;
+}
+
+.addToCartAnchor:hover{
+    color: #fff;
+}
+
+.addToCartAnchor:focus{
+    color: #fff;
+}
+
+.cartCount {
+    background: #e9a449;
+    padding: 10px 7px;
+    border-radius: 50%;
+    font-size: 12px;
+    top: -1.4em;
 }
 
 /* .footer{
