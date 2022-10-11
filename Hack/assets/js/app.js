@@ -32,7 +32,7 @@ let ItemDesc = document.getElementById("ItemDesc");
 let DeliveryDIVspan = document.querySelector(".DeliveryDIV span");
 let addFav = document.querySelectorAll(".buyCards .fa-heart");
 let rowGet = document.querySelector(".rowGet");
-let buyLoader = document.querySelector(".buyLoader");
+let buyLoader = document.getElementById("buyLoader");
 
 async function Addproduct() {
   DeliveryDIVspan.classList.remove("d-none");
@@ -65,6 +65,7 @@ async function Addproduct() {
       url = ""
     })
     .catch((error) => {
+      DeliveryDIVspan.classList.add("d-none");
       console.error("Error writing document: ", error);
     });
 }
@@ -136,6 +137,7 @@ getProducts();
 function getAllproducts(){
   db.collection("products").get().then((querySnapshot) => {
     querySnapshot.forEach((doc) => {
+      buyLoader.classList.add("d-none");
       console.log(doc.id, " => ", doc.data());
       const mainCardDetails = `
       <div class="col-lg-4 col-md-6 mb-4">
@@ -156,7 +158,6 @@ function getAllproducts(){
   </div>
     `
     rowGet.innerHTML += mainCardDetails;
-    buyLoader.classList.add("d-none");
     
     });
   });
@@ -165,8 +166,11 @@ function getAllproducts(){
 getAllproducts()
 
 async function register() {
+  let signupbtn = document.querySelector(".signup-btn");
+  signupbtn.classList.add("active");
   await firebase.auth().createUserWithEmailAndPassword(emailEl.value, passwordEl.value)
     .then(async (userCredential) => {
+      setTimeout(()=>{signupbtn.classList.remove("active");},2000)
       // Signed in '
       var user = userCredential.user;
       let uid = user.uid
@@ -196,6 +200,7 @@ async function register() {
       // ...
     })
     .catch((error) => {
+      setTimeout(()=>{signupbtn.classList.remove("active");},2000)
       var errorCode = error.code;
       var errorMessage = error.message;
       // ..
@@ -203,9 +208,12 @@ async function register() {
 }
 let role;
 function loginForm() {
+  let loginbtn = document.querySelector(".login-btn");
+  loginbtn.classList.add("active");
   firebase.auth().signInWithEmailAndPassword(emailEl.value, passwordEl.value)
     .then((userCredential) => {
       // Signed in
+      setTimeout(()=>{loginbtn.classList.remove("active");},2000)
       var user = userCredential.user;
       console.log(user.uid, '49')
       uid = user.uid
@@ -226,6 +234,7 @@ function loginForm() {
       // ...
     })
     .catch((error) => {
+      setTimeout(()=>{loginbtn.classList.remove("active");},2000)
       var errorCode = error.code;
       var errorMessage = error.message;
     });
@@ -327,6 +336,7 @@ function delfunc(productId) {
     setTimeout(()=>{
       del_popup.classList.remove("active")
     },2000)
+    setTimeout(()=>{window.location.reload()},3000)
 }).catch((error) => {
   dltError.innerHTML = error;
   dltError.style.color = "red";

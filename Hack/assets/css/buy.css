@@ -744,6 +744,7 @@ h2.cardsh2 {
     align-items: center;
     justify-content: space-between;
     padding: 5px 20px 0px 20px;
+    flex-wrap: wrap;
 }
 
 .uploadCat span {
@@ -1066,6 +1067,10 @@ padding: 10px;
     top: -1.4em;
 }
 
+.addProduct button:focus{
+    outline: none;
+}
+
 .del_popup {
     padding: 15px 35px;
     background: #e9a449;
@@ -1082,6 +1087,63 @@ padding: 10px;
 
 .del_popup.active{
     left: 27px;
+}
+
+.login-btn{
+    position: relative;
+}
+
+.login-btn::before {
+    content: "";
+    position: absolute;
+    top: 7px;
+    left: 43%;
+    padding: 10px;
+    background: transparent;
+    border: 2px solid #fff;
+    border-left: 2px solid transparent;
+    border-radius: 50%;
+    animation: rotate 500ms linear infinite;
+    display: none;
+}
+
+.login-btn.active{
+    opacity: 0.8;
+}
+
+.login-btn.active input{
+    color: #e9a449;
+    opacity: 0.8;
+}
+
+.login-btn.active::before{
+    display: block;
+}
+
+.signup-btn{
+    position: relative;
+}
+
+.signup-btn::before {
+    content: "";
+    position: absolute;
+    top: 7px;
+    left: 43%;
+    padding: 10px;
+    background: transparent;
+    border: 2px solid #fff;
+    border-left: 2px solid transparent;
+    border-radius: 50%;
+    animation: rotate 500ms linear infinite;
+    display: none;
+}
+
+.signup-btn.active input{
+    color: #e9a449;
+}
+
+.signup-btn.active::before{
+    display: block;
 }
 
 /* .footer{

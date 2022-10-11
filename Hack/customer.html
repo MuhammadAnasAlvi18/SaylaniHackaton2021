@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Website</title>
+    <link rel="stylesheet" href="./assets/css/buy.css">
+    <link rel="stylesheet" href="./assets/css/layout.css">
+    <script src="https://kit.fontawesome.com/1958b1fb84.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital@1&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-storage.js"></script>
+
+    <script>
+        var firebaseConfig = {
+            apiKey: "AIzaSyAdYd7LAqtkJemEn8GHJaEV8kRhn7HzDVI",
+            authDomain: "practice-d9684.firebaseapp.com",
+            projectId: "practice-d9684",
+            storageBucket: "practice-d9684.appspot.com",
+            messagingSenderId: "235831722999",
+            appId: "1:235831722999:web:fc52eb6e03792972f964f2",
+            measurementId: "G-WR0P7ZFX6B"
+        };
+        firebase.initializeApp(firebaseConfig);
+        firebase.analytics();
+    </script>
+
+</head>
+
+<body>
+    <!-- <nav class="nav">
+    <div class="container-fluid navbar">
+        <div class="row navbar-row">
+            <div class="col-sm-3 nav-logo">
+                <img src="assets/images/logo.jpg">
+            </div>
+            <div class="col-sm-9 nav-links">
+                <ul>
+                    <li><a href="customer.html">HOME</a></li>
+                    <li><a href="#productsh2">ABOUT</a></li>
+                    <li><a href="customerBuy.html">BUY</a></li>
+                    <li><a href="">CONTACT</a></li>
+                    <li><button onclick="signout()">LOGOUT</button></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="text">
+    <p>Up For A BITE</p>
+    <h2>Order Tasty And Fresh Food Anytime!</h2>
+    <a href="customerBuy.html"><button class="buyBtn">Buy Now</button></a>
+</div>
+</nav> -->
+
+    <div class="navbaar">
+        <a href="customer.html" class="logoAnchor">Food Website</a>
+        <ul>
+            <i class="fa-solid fa-xmark" onclick="closeNav()"></i>
+            <li><a href="customer.html">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#">Contact</a></li>
+            <li onclick="cart()"><a href="customerCart.html">Cart <i
+            class="fa-solid fa-cart-shopping d-block ml-3"></i></a></li>
+        </ul>
+        <li class="userDetailLi">
+            <i class="fa-solid fa-bars" onclick="showNav()"></i>
+            <img src="assets/images/avatar.png" id="avatarImg" onclick="showUser()" alt="user-avatar">
+            <div class="userDetail d-none">
+                <div class="userDetailDiv Profile">
+                    <h3>Profile</h3>
+                </div>
+                <div class="userDetailDiv Logout" onclick="signout()">
+                    <h3>Logout</h3>
+                </div>
+            </div>
+        </li>
+    </div>
+
+    <div class="banner customerBanner">
+        <h1>Welcome, <span id="bannerSpan"></span></h1>
+        <h5>Order Tasty And Fresh Food Anytime</h5>
+        <a href="customerBuy.html">Buy Now <i class="fa-solid fa-cart-shopping"></i></a>
+    </div>
+
+    <div class="aboutSection" id="about">
+        <div class="h2DIv" style="padding-bottom: 50px;">
+            <h2 class="cardsh2">About</h2>
+        </div>
+        <div class="container">
+            <div class="aboutShad" data-aos="fade-up" data-aos-duration="800">
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <div class="aboutTxt">
+                            <h3>Food Website</h3>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim vero laborum, facere ea
+                                quis
+                                aliquid cum error maiores distinctio id tempora nam quisquam. Voluptas architecto
+                                officiis
+                                tenetur quidem consequuntur mollitiaLorem ipsum dolor sit amet, consectetur adipisicing
+                                elit. Enim vero laborum, facere ea quis
+                                aliquid cum error maiores distinctio id tempora nam quisquam. Voluptas architecto
+                                officiis
+                                tenetur quidem consequuntur mollitiaLorem ipsum dolor sit amet, consectetur adipisicing
+                                elit. Enim vero laborum, facere ea quis
+                                aliquid cum error maiores distinctio id tempora nam quisquam. Voluptas architecto
+                                officiis
+                                tenetur quidem consequuntur mollitia!</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <div class="aboutImg">
+                            <img src="assets/images/banner.jpg" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="contact" id="contact">
+        <div class="contactWrapper">
+            <div class="h2DIv" style="padding-bottom: 50px;">
+                <h2 class="cardsh2">Contact</h2>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="contactSection">
+                        <h3>Don't Hesitate to Contact us</h3>
+                        <div class="col-md-6">
+                            <div class="contactInput">
+                                <label>First Name
+                                    <input type="text" placeholder="Enter your First Name">
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="contactInput">
+                                <label>Last Name
+                                    <input type="text" placeholder="Enter your Last Name">
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="contactInput">
+                                <label>Email
+                                    <input type="email" placeholder="Enter your Email Address">
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="contactInput">
+                                <label>Message
+                                    <textarea name="" id="" cols="30" rows="10"
+                                        placeholder="Enter your message ..."></textarea>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="#" class="contactBTN">Send</a>
+                </div>
+            </div>
+
+
+            <!-- <div class="footer">
+                <div class="col-md-4">
+                    <div class="footerTxt">
+                    <h3>Food Website</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vero accusantium ipsam commodi nihil
+                        veritatis non, voluptatibus consequuntur dolores in numquam provident tenetur, fugiat tempore.
+                        Consequuntur tempora rem nisi similique at!</p>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="footerLinks">
+                        <ul>
+                            <li><a href="customer.html">HOME</a></li>
+                            <li><a href="#about">ABOUT</a></li>
+                            <li><a href="customerBuy.html">BUY</a></li>
+                            <li><a href="#contact">CONTACT</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="footerLinks">
+                        <ul>
+                            <li><a href="customer.html">HOME</a></li>
+                            <li><a href="#about">ABOUT</a></li>
+                            <li><a href="customerBuy.html">BUY</a></li>
+                            <li><a href="#contact">CONTACT</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="footerMsg">
+                    <h3>Send Message </h3>
+                    <input type="text" placeholder="Enter message">
+                    <a href="#">SEND</a>
+                    </div>
+                </div>
+            </div> -->
+
+        </div>
+    </div>
+
+
+
+
+
+    <!-- <div data-aos="zoom-in-up" class="productsh2" id="productsh2">
+    <h2>Our Products</h2>
+</div>
+<div id="slider">
+    <figure>
+        <img src="assets/images/shake.jpg" >
+        <img src="assets/images/fast food.jpg" >
+        <img src="assets/images/French.jpg" >
+        <img src="assets/images/fruits.jpg" >
+        <img src="assets/images/juice2.jpg">
+        <img src="assets/images/shake.jpg" >
+        <img src="assets/images/156-1564108_chinese-food-png-chinese-fast-food-items-transparent.png">
+        <img src="assets/images/fast food.jpg">
+    </figure>
+</div>
+<div class="footerh2">
+    <h2>Follow Us On</h2>
+</div>
+<div class="footericons">
+        <i class="fab fa-facebook"></i>
+        <i class="fab fa-instagram"></i>
+        <i class="fab fa-twitter"></i>
+</div> -->
+
+    <script src="./assets/js/app.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+</body>
+
+</html>

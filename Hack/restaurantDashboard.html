@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Website</title>
+    <link rel="stylesheet" href="./assets/css/buy.css">
+    <link rel="stylesheet" href="./assets/css/layout.css">
+    <script src="https://kit.fontawesome.com/1958b1fb84.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital@1&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-storage.js"></script>
+
+    <script>
+        var firebaseConfig = {
+            apiKey: "AIzaSyAdYd7LAqtkJemEn8GHJaEV8kRhn7HzDVI",
+            authDomain: "practice-d9684.firebaseapp.com",
+            projectId: "practice-d9684",
+            storageBucket: "practice-d9684.appspot.com",
+            messagingSenderId: "235831722999",
+            appId: "1:235831722999:web:fc52eb6e03792972f964f2",
+            measurementId: "G-WR0P7ZFX6B"
+        };
+        firebase.initializeApp(firebaseConfig);
+        firebase.analytics();
+    </script>
+
+</head>
+
+<body>
+    <!-- <nav class="nav">
+    <div class="container-fluid navbar">
+        <div class="row navbar-row">
+            <div class="col-lg-3 nav-logo">
+                <img src="assets/images/logo.jpg">
+            </div>
+            <div class="col-lg-9 nav-links">
+                <ul>
+                    <li><a href="restaurantAdd.html"><a href="restaurantAdd.html">Home</a></a></li>
+                    <li><a href="">ABOUT</a></li>
+                    <li><a href="restaurantDashboard.html">DASHBOARD</a></li>
+                    <li><a href="">CONTACT</a></li>
+                    <li><button onclick="signout()">LOGOUT</button></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav> -->
+
+
+        <div class="navbaar">
+            <a href="restaurantAdd.html" class="logoAnchor">Food Website</a>
+            <ul>
+                <i class="fa-solid fa-xmark" onclick="closeNav()"></i>
+                <li><a href="restaurantAdd.html">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+                <!-- <li><i class="fa-solid fa-cart-shopping d-block" onclick="cart()"></i></li> -->
+            </ul>
+            <li class="userDetailLi">
+                <i class="fa-solid fa-bars" onclick="showNav()"></i>
+                <img src="assets/images/avatar.png" id="avatarImg" onclick="showUser()" alt="user-avatar">
+                <div class="userDetail d-none">
+                    <div class="userDetailDiv Profile"><h3>Profile</h3></div>
+                    <div class="userDetailDiv Profile"><h3>My Orders</h3></div>
+                    <div class="userDetailDiv Profile"><h3><a href="restaurantAdd.html">Add Product</a></h3></div>
+                    <div class="userDetailDiv Setting"><h3>My Products</h3></div>
+                    <div class="userDetailDiv Logout" onclick="signout()"><h3>Logout</h3></div>
+                </div>
+                </li>
+        </div>
+
+        <div class="banner">
+            <h1>Welcome, <span id="bannerSpan"></span></h1>
+            <h5>Order Tasty And Fresh Food Anytime</h5>
+            <a href="#">Buy Now <i class="fa-solid fa-cart-shopping"></i></a>
+        </div>
+        
+
+    <div class="myproducts">
+    <div class="h2DIv">
+        <h2 class="cardsh2">My Products</h2>
+    </div>
+    <div class="cards" id="cards">
+        <div class="container-fluid">
+        <div class="row">
+            <div class="loader" id="loader">
+                <h1 id="loaderh1">Loading Products...</h1>
+            </div>
+            <div class="del_popup" id="del_popup">Deleted Successfully</div>
+        </div>
+    </div>
+    </div>
+</div>
+
+
+<script src="./assets/js/app.js"></script>
+
+</body>
+
+</html>
