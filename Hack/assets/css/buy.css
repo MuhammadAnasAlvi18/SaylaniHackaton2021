@@ -68,6 +68,7 @@ a:focus {
     list-style: none;
     margin: 0 20px;
     font-size: 18px;
+    position: relative;
 }
 
 .navbaar ul li a {
@@ -76,6 +77,34 @@ a:focus {
     position: relative;
     display: flex;
     align-items: center;
+    padding: 0 8px;
+}
+
+.navbaar ul li::before{
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 2px;
+    right: 0;
+    background: #fff;
+    top: -5px;
+    transition: 0.3s;
+}
+
+.navbaar ul li::after{
+    content: "";
+    position: absolute;
+    width: 2px;
+    height: 0;
+    left: 0;
+    background: #fff;
+    top: -4px;
+    transition: 0.3s;
+}
+
+.navbaar ul li:hover::after{
+    transition-delay: 0.3s;
+    height: 35px;
 }
 
 .navbaar ul li a::before {
@@ -83,12 +112,33 @@ a:focus {
     position: absolute;
     width: 0;
     height: 2px;
+    left: 0;
     background: #fff;
     bottom: -5px;
     transition: 0.3s;
 }
 
+.navbaar ul li a::after{
+    content: "";
+    position: absolute;
+    width: 2px;
+    height: 0;
+    right: 0;
+    background: #fff;
+    bottom: -4px;
+    transition: 0.3s;
+}
+
+.navbaar ul li a:hover::after{
+    transition-delay: 0.3s;
+    height: 35px;
+}
+
 .navbaar ul li a:hover::before {
+    width: 100%;
+}
+
+.navbaar ul li:hover::before {
     width: 100%;
 }
 
@@ -913,6 +963,7 @@ padding: 10px;
 .contact .contactBTN:hover{
     color: #e9a449;
     background: #fff;
+    border-color: #e9a449;
 }
 
 .buySection{
