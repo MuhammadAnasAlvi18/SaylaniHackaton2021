@@ -33,6 +33,8 @@ let DeliveryDIVspan = document.querySelector(".DeliveryDIV span");
 let addFav = document.querySelectorAll(".buyCards .fa-heart");
 let rowGet = document.querySelector(".rowGet");
 let buyLoader = document.getElementById("buyLoader");
+let productCount = document.getElementById("productCount");
+let count = 1;
 
 async function Addproduct() {
   DeliveryDIVspan.classList.remove("d-none");
@@ -142,7 +144,7 @@ function getAllproducts(){
       const mainCardDetails = `
       <div class="col-lg-4 col-md-6 mb-4">
       <div class="buyCards">
-          <i class="fa-regular fa-heart"></i>
+          <div class="heartDiv"><label><input type="checkbox"/><i class="fa-solid fa-heart"></i><label/></div>
           <div class="moreRes"><span>more from this restaurant</span></div>
           <img src="${doc.data().image}" alt="card-img">
           <div class="BuycardSec">
@@ -152,7 +154,7 @@ function getAllproducts(){
           <h3>${doc.data().ItemName}</h3>
           <h4>${doc.data().category}</h4>
           <h5 class="price">Price : ${doc.data().price} Rs</h5>
-          <div class="plusMinus"><a href="javascript:void(0)">-</a><input type="text" value="0" readonly><a href="javascript:void(0)">+</a></div>
+          <div class="plusMinus"><a href="javascript:void(0)">-</a><span class="productCount">1</span><a href="javascript:void(0)" onclick="addCount()">+</a></div>
           <div class="addtoCartAnchorDiv"><a href="javascript:void(0)" class="addToCartAnchor ${doc.id}" onclick="orderfunc(this)">Add to Cart</a></div>
       </div>
   </div>
@@ -167,10 +169,10 @@ getAllproducts()
 
 async function register() {
   let signupbtn = document.querySelector(".signup-btn");
+  let signupError = document.getElementById("signupError");
   signupbtn.classList.add("active");
   await firebase.auth().createUserWithEmailAndPassword(emailEl.value, passwordEl.value)
     .then(async (userCredential) => {
-      setTimeout(()=>{signupbtn.classList.remove("active");},2000)
       // Signed in '
       var user = userCredential.user;
       let uid = user.uid
@@ -197,10 +199,11 @@ async function register() {
       passwordEl.value = "";
       usernumber.value = "";
       usercountry.value = ""
+      setTimeout(()=>{signupbtn.classList.remove("active");},2000)
       // ...
     })
     .catch((error) => {
-      setTimeout(()=>{signupbtn.classList.remove("active");},2000)
+      setTimeout(()=>{signupbtn.classList.remove("active");errorMessage? signupError.innerHTML = errorMessage : signupError.innerHTML = ""},2000)
       var errorCode = error.code;
       var errorMessage = error.message;
       // ..
@@ -209,6 +212,7 @@ async function register() {
 let role;
 function loginForm() {
   let loginbtn = document.querySelector(".login-btn");
+  let Loginerror = document.getElementById("Loginerror");
   loginbtn.classList.add("active");
   firebase.auth().signInWithEmailAndPassword(emailEl.value, passwordEl.value)
     .then((userCredential) => {
@@ -223,10 +227,10 @@ function loginForm() {
           let role = doc.data().role
           console.log("Document data:", doc.data(), role);
           if (role === true) {
-            window.location = 'restaurant.html'
+            window.location = 'restaurantAdd.html'
           }
           else {
-            window.location = 'home.html'
+            window.location = 'customer.html'
           }
         }
       })
@@ -234,9 +238,11 @@ function loginForm() {
       // ...
     })
     .catch((error) => {
-      setTimeout(()=>{loginbtn.classList.remove("active");},2000)
+      setTimeout(()=>{loginbtn.classList.remove("active");errorMessage? Loginerror.innerHTML = errorMessage : Loginerror.innerHTML = "";},2000)
       var errorCode = error.code;
       var errorMessage = error.message;
+      console.log(errorMessage);
+      console.log(error);
     });
 
 }
@@ -374,8 +380,16 @@ function uploadImageFunc(id) {
   let usernameLS = localStorage.getItem("username");
   let resName = localStorage.getItem("resName");
   // bannerh1.innerHTML = `Welcome, `;
+  avatarUrl? avatarImg.src = avatarUrl : avatarImg.src = avatarUrl
   bannerSpan.innerHTML = usernameLS;
-  avatarImg.src = avatarUrl;
+  // avatarImg.src = avatarUrl;
   console.log(usernameLS);
   welcomeUser.innerHTML = `Hello, ${usernameLS}`;
-  
+
+
+
+  function addCount(){
+    count = count + 1;
+    console.log(count);
+    productCount.innerText += count.toString();
+  }

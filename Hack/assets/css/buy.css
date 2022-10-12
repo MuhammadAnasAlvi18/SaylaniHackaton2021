@@ -321,9 +321,9 @@ h2.cardsh2 {
     transition: 0.5s;
 }
 
-.orderBtn:hover i {
+/* .orderBtn:hover i {
     padding-left: 10px;
-}
+} */
 
 .orderBtn:focus {
     color: #fff;
@@ -983,13 +983,27 @@ padding: 10px;
     padding-left: 10px;
 }
 
-.buyCards .fa-heart{
+.buyCards .heartDiv{
     position: absolute;
     font-size: 30px;
     right: 10px;
     top: 45px;
     color: #fff;
     cursor: pointer;
+}
+
+.buyCards .heartDiv input{
+    display: none;
+}
+
+.buyCards .heartDiv i{
+    transition: 0.5s ease;
+    cursor: pointer;
+    text-shadow: 0px 0px 2px #000000;
+}
+
+.buyCards .heartDiv input:checked ~ i{
+    color: #e9a449;
 }
 
 .buyCards h3{
@@ -1144,6 +1158,47 @@ padding: 10px;
 
 .signup-btn.active::before{
     display: block;
+}
+
+#buyLoader {
+    height: 61.2vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#buyLoader h1{
+    font-size: 50px;
+    color: #fff;
+    margin-bottom: 0;
+    margin-top: 0;
+}
+
+#buyLoader h2{
+    font-size: 50px;
+    color: #fff;
+    margin-bottom: 0;
+    margin-top: 0;
+}
+
+#buyLoader span {
+    padding: 10px;
+    border: 5px solid #fff;
+    border-left-color: transparent;
+    border-right-color: transparent;
+    background: transparent;
+    border-radius: 50%;
+    margin: 9px 4px 0 6px;
+    animation: rotate 500ms linear infinite;
+}
+
+.productCount {
+    padding: 11px 20px;
+    font-size: 20px;
+    border: 1px solid #e9a449;
+    margin: 0 10px;
+    text-align: center;
 }
 
 /* .footer{
