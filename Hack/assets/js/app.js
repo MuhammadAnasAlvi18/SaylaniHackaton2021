@@ -35,6 +35,8 @@ let rowGet = document.querySelector(".rowGet");
 let buyLoader = document.getElementById("buyLoader");
 let productCount = document.getElementById("productCount");
 let count = 1;
+let cartCount = document.querySelectorAll(".cartCount");
+let cartDetail = document.querySelector(".cartDetail");
 
 async function Addproduct() {
   DeliveryDIVspan.classList.remove("d-none");
@@ -46,25 +48,25 @@ async function Addproduct() {
     restaurantName: restaurantName.value,
     price: price.value,
     ItemName: ItemName.value,
-    ItemDesc : ItemDesc.value,
+    ItemDesc: ItemDesc.value,
     category: category.value,
     Id: uid,
     image: url,
     orderCount: 0,
-    time : new Date().getTime(),
+    time: new Date().getTime(),
     orderFrom: []
   })
     .then(() => {
       console.log("Document successfully written!");
       floatMsg.classList.add("active");
       DeliveryDIVspan.classList.add("d-none");
-      setTimeout(()=>{
+      setTimeout(() => {
         floatMsg.classList.remove("active");
-      },3000)
+      }, 3000)
       price.value = '';
       ItemName.value = '';
       ItemDesc.value = '',
-      url = ""
+        url = ""
     })
     .catch((error) => {
       DeliveryDIVspan.classList.add("d-none");
@@ -96,17 +98,17 @@ function getProducts() {
         let Cdate = new Date().getTime();
         let finalDate = Cdate - dated;
         let days = Math.floor(finalDate / (1000 * 3600 * 24));
-        let hours = Math.floor(finalDate/1000/60/60); 
-        let minutes = Math.floor((finalDate/1000)/60); 
-        let seconds = Math.floor((finalDate/1000)); 
+        let hours = Math.floor(finalDate / 1000 / 60 / 60);
+        let minutes = Math.floor((finalDate / 1000) / 60);
+        let seconds = Math.floor((finalDate / 1000));
         let day = days < 2 ? "day" : "days";
         let hour = hours < 2 ? "hour" : "hours";
         let min = minutes < 2 ? "minute" : "minutes";
         let sec = seconds < 2 ? "second" : "seconds";
 
-        console.log(hour , min , sec , day);
+        console.log(hour, min, sec, day);
 
-      const mainCardDetail = `
+        const mainCardDetail = `
      <div class="col-lg-4 col-md-8 col-sm-12 mb-5">
      <div class="cardsDiv">
          <img src="${doc.data().image}" alt="res-img"/>
@@ -121,14 +123,14 @@ function getProducts() {
          <h4 class='cardH4'>${doc.data().ItemName}</h4> 
          <p id="ordMSG></p>
          <p style="color: green;" id="ordMsg"></p>
-         <p class="card-text card-para">${doc.data().ItemDesc? doc.data().ItemDesc : ""} </p>
+         <p class="card-text card-para">${doc.data().ItemDesc ? doc.data().ItemDesc : ""} </p>
          <a href="javascript:void(0)" class="orderBtn ${doc.id}" id="orderBtn" onclick="delfunc(this)">Delete <i class="fa-solid fa-trash"></i></a>
          <!-- <a href="javascript:void(0)" class="orderBtn ${doc.id}" id="orderBtn" onclick="orderfunc(this)">Add To Cart <i class="fa-solid fa-plus"></i></a> -->
          </div>
      </div>
     `
         card.innerHTML += mainCardDetail;
-    }
+      }
 
     });
   });
@@ -136,7 +138,7 @@ function getProducts() {
 getProducts();
 
 
-function getAllproducts(){
+function getAllproducts() {
   db.collection("products").get().then((querySnapshot) => {
     querySnapshot.forEach((doc) => {
       buyLoader.classList.add("d-none");
@@ -159,13 +161,101 @@ function getAllproducts(){
       </div>
   </div>
     `
-    rowGet.innerHTML += mainCardDetails;
-    
+      rowGet.innerHTML += mainCardDetails;
+
     });
   });
 }
 
-getAllproducts()
+getAllproducts();
+
+function getCartItems() {
+
+  let skeletonbb = document.querySelector(".skeleton-bb");
+  let skeletonTitleSubtotal = document.querySelector(".skeletonTitleSubtotal");
+  let cartSummarySubTotal = document.querySelector(".cartSummaryClone");
+  let cartSummaryTotalPrice = document.querySelector(".cartSummaryTotalPrice");
+  let subtotalPrice = document.querySelector(".subtotalPrice");
+  let proRef = db.collection("products");
+  proRef.get().then((snapshot) => {
+    snapshot.forEach((doc) => {
+      let docRef = db.collection("users").doc(uid);
+      docRef.get().then((docs) => {
+        console.log(docs.data().myCart);
+
+        docs.data().myCart.forEach((ids) => {
+          console.log(ids);
+
+          if (ids === doc.id) {
+            skeletonbb.classList.add("d-none");
+            skeletonTitleSubtotal.classList.add("d-none");
+            // skeletonTitleTotal.classList.add("d-none");
+            let cloneRows = `
+          <div class="row bb">
+                        <div class="col-lg-6 pl-0 pr-0">
+                            <div class="cardDetails">
+                                <div class="cartDetailsFlex">
+                                    <i class="fa-solid fa-trash"></i>
+                                    <img src="${doc.data().image}" alt="">
+                                    <div class="cartDetailsTitle">
+                                        <h3>${doc.data().ItemName}</h3>
+                                        <h4>Restaurant : ${doc.data().restaurantName}</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 pl-0 pr-0">
+                            <div class="cardDetails">
+                                <div class="cardDetailsPrice">
+                                    <h3>Rs ${doc.data().price}</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 pl-0 pr-0">
+                            <div class="cardDetails">
+                                <div class="cardDetailsQuantity">
+                                    <input type="number" value="1">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 pl-0 pr-0">
+                            <div class="cardDetails">
+                                <div class="cardDetailsSubtotal">
+                                    <h3>Rs ${doc.data().price}</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+          `;
+
+            cartDetail.innerHTML += cloneRows;
+
+            let clonecartSummarySubTotal = `
+      <div class="cartSummarySubTotal">
+      <span>Subtotal</span>
+      <span class="subtotalPrice">Rs ${doc.data().price}</span>
+      </div>
+      `
+
+            cartSummarySubTotal.innerHTML += clonecartSummarySubTotal;
+
+
+            console.log(cartSummaryTotalPrice.innerHTML);
+
+            console.log(subtotalPrice);
+
+          }
+
+        })
+
+
+      })
+    })
+
+  })
+}
+
+getCartItems();
 
 async function register() {
   let signupbtn = document.querySelector(".signup-btn");
@@ -190,7 +280,7 @@ async function register() {
         userRestaurantName: userRestaurantName.value,
         joined: new Date().getTime(),
         orderCompleted: 0,
-        myCart:[]
+        myCart: []
       }
       console.log(obj)
       await db.collection('users').doc(uid).set(obj)
@@ -199,11 +289,11 @@ async function register() {
       passwordEl.value = "";
       usernumber.value = "";
       usercountry.value = ""
-      setTimeout(()=>{signupbtn.classList.remove("active");},2000)
+      setTimeout(() => { signupbtn.classList.remove("active"); }, 2000)
       // ...
     })
     .catch((error) => {
-      setTimeout(()=>{signupbtn.classList.remove("active");errorMessage? signupError.innerHTML = errorMessage : signupError.innerHTML = ""},2000)
+      setTimeout(() => { signupbtn.classList.remove("active"); errorMessage ? signupError.innerHTML = errorMessage : signupError.innerHTML = "" }, 2000)
       var errorCode = error.code;
       var errorMessage = error.message;
       // ..
@@ -217,7 +307,7 @@ function loginForm() {
   firebase.auth().signInWithEmailAndPassword(emailEl.value, passwordEl.value)
     .then((userCredential) => {
       // Signed in
-      setTimeout(()=>{loginbtn.classList.remove("active");},2000)
+      setTimeout(() => { loginbtn.classList.remove("active"); }, 2000)
       var user = userCredential.user;
       console.log(user.uid, '49')
       uid = user.uid
@@ -238,7 +328,7 @@ function loginForm() {
       // ...
     })
     .catch((error) => {
-      setTimeout(()=>{loginbtn.classList.remove("active");errorMessage? Loginerror.innerHTML = errorMessage : Loginerror.innerHTML = "";},2000)
+      setTimeout(() => { loginbtn.classList.remove("active"); errorMessage ? Loginerror.innerHTML = errorMessage : Loginerror.innerHTML = ""; }, 2000)
       var errorCode = error.code;
       var errorMessage = error.message;
       console.log(errorMessage);
@@ -261,6 +351,8 @@ firebase.auth().onAuthStateChanged((user) => {
     let docRef = db.collection('users').doc(uid);
     docRef.get().then((doc) => {
       if (doc.exists) {
+        console.log(doc.data().myCart.length.toString());
+        cartCount.forEach((cartCounts) => { cartCounts.innerHTML = doc.data().myCart.length.toString(); })
         console.log("Document data:", doc.data());
         localStorage.setItem("resName", doc.data().userRestaurantName);
         localStorage.setItem("avatar", doc.data().userimage);
@@ -323,8 +415,13 @@ function orderfunc(productId) {
   console.log(uniq);
 
   db.collection("users").doc(uid).update({
-    myCart : [...uniq]
-  } , { merge: true })
+    myCart: [...uniq]
+  }, { merge: true })
+
+  let docRef = db.collection("users").doc(uid)
+  docRef.get().then((doc) => {
+    console.log(doc.data().myCart);
+  })
 
   //   db.collection("products").doc("5XIue8r9Z7LdbeqH9at8").update({
   //   orderCount: 10
@@ -339,14 +436,14 @@ function delfunc(productId) {
   let dltId = splitId[1];
   console.log(dltId);
   db.collection("products").doc(dltId).delete().then(() => {
-    setTimeout(()=>{
+    setTimeout(() => {
       del_popup.classList.remove("active")
-    },2000)
-    setTimeout(()=>{window.location.reload()},3000)
-}).catch((error) => {
-  dltError.innerHTML = error;
-  dltError.style.color = "red";
-});
+    }, 2000)
+    setTimeout(() => { window.location.reload() }, 3000)
+  }).catch((error) => {
+    dltError.innerHTML = error;
+    dltError.style.color = "red";
+  });
 
 }
 
@@ -376,20 +473,20 @@ function uploadImageFunc(id) {
 }
 
 
-  let avatarUrl = localStorage.getItem("avatar");
-  let usernameLS = localStorage.getItem("username");
-  let resName = localStorage.getItem("resName");
-  // bannerh1.innerHTML = `Welcome, `;
-  avatarUrl? avatarImg.src = avatarUrl : avatarImg.src = avatarUrl
-  bannerSpan.innerHTML = usernameLS;
-  // avatarImg.src = avatarUrl;
-  console.log(usernameLS);
-  welcomeUser.innerHTML = `Hello, ${usernameLS}`;
+let avatarUrl = localStorage.getItem("avatar");
+let usernameLS = localStorage.getItem("username");
+let resName = localStorage.getItem("resName");
+// bannerh1.innerHTML = `Welcome, `;
+avatarUrl ? avatarImg.src = avatarUrl : avatarImg.src = avatarUrl
+bannerSpan.innerHTML = usernameLS;
+// avatarImg.src = avatarUrl;
+console.log(usernameLS);
+welcomeUser.innerHTML = `Hello, ${usernameLS}`;
 
 
 
-  function addCount(){
-    count = count + 1;
-    console.log(count);
-    productCount.innerText += count.toString();
-  }
+function addCount() {
+  count = count + 1;
+  console.log(count);
+  productCount.innerText += count.toString();
+}

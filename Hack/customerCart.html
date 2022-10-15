@@ -38,38 +38,16 @@
 </head>
 
 <body>
-    <!-- <nav class="nav">
-    <div class="container-fluid navbar">
-        <div class="row navbar-row">
-            <div class="col-sm-3 nav-logo">
-                <img src="assets/images/logo.jpg">
-            </div>
-            <div class="col-sm-9 nav-links">
-                <ul>
-                    <li><a href="customer.html">HOME</a></li>
-                    <li><a href="#productsh2">ABOUT</a></li>
-                    <li><a href="customerBuy.html">BUY</a></li>
-                    <li><a href="">CONTACT</a></li>
-                    <li><button onclick="signout()">LOGOUT</button></li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <div class="text">
-    <p>Up For A BITE</p>
-    <h2>Order Tasty And Fresh Food Anytime!</h2>
-    <a href="customerBuy.html"><button class="buyBtn">Buy Now</button></a>
-</div>
-</nav> -->
 
     <div class="navbaar">
         <a href="customer.html" class="logoAnchor">Food Website</a>
         <ul>
             <i class="fa-solid fa-xmark" onclick="closeNav()"></i>
             <li><a href="customer.html">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#">Wishlist</a></li>
-            <li onclick="cart()"><a href="customerCart.html">Cart <i class="fa-solid fa-cart-shopping d-block ml-3"></i><sup class="cartCount">3</sup></a></li>
+            <li><a href="javascript:void(0)">Wishlist</a></li>
+            <li><a href="javascript:void(0)">About</a></li>
+            <li onclick="cart()"><a href="javascript:void(0)">Cart <i
+                        class="fa-solid fa-cart-shopping d-block ml-3"></i><sup id="cartCounter" class="cartCount">0</sup></a></li>
         </ul>
         <li class="userDetailLi">
             <i class="fa-solid fa-bars" onclick="showNav()"></i>
@@ -85,44 +63,114 @@
         </li>
     </div>
 
-    <div class="banner customerBanner">
-        <h1>Welcome, <span id="bannerSpan"></span></h1>
-        <h5>Order Tasty And Fresh Food Anytime</h5>
-        <a href="customerBuy.html">Buy Now <i class="fa-solid fa-cart-shopping"></i></a>
-    </div>
-
-    <div class="aboutSection" id="about">
-        <div class="h2DIv" style="padding-bottom: 50px;">
-            <h2 class="cardsh2">About</h2>
-        </div>
-        <div class="container">
-            <div class="aboutShad" data-aos="fade-up" data-aos-duration="800">
-                <div class="row">
-                    <div class="col-md-6 mb-3">
-                        <div class="aboutTxt">
-                            <h3>Food Website</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim vero laborum, facere ea
-                                quis
-                                aliquid cum error maiores distinctio id tempora nam quisquam. Voluptas architecto
-                                officiis
-                                tenetur quidem consequuntur mollitiaLorem ipsum dolor sit amet, consectetur adipisicing
-                                elit. Enim vero laborum, facere ea quis
-                                aliquid cum error maiores distinctio id tempora nam quisquam. Voluptas architecto
-                                officiis
-                                tenetur quidem consequuntur mollitiaLorem ipsum dolor sit amet, consectetur adipisicing
-                                elit. Enim vero laborum, facere ea quis
-                                aliquid cum error maiores distinctio id tempora nam quisquam. Voluptas architecto
-                                officiis
-                                tenetur quidem consequuntur mollitia!</p>
+    <div class="banner p-0 customerBanner customerBanner2">
+        <div class="customerWrapper">
+            <h1>Cart</h1>
+            <!-- <div class="container"> -->
+            <div class="row">
+                <div class="col-md-8 mb-4">
+                    <div class="cartDetail">
+                        <!-- <div class="row">
+                            <div class="col-lg-6 pl-0 pr-0">
+                                <div class="cardDetails">
+                                    <div class="cardDetailsHeading"><span>Product</span></div>
+                                    <div class="cartDetailsFlex">
+                                        <i class="fa-solid fa-trash"></i>
+                                        <img src="assets/images/fast food.jpg" alt="">
+                                        <div class="cartDetailsTitle">
+                                            <h3>Chicken Tikka Pizza</h3>
+                                            <h4>Restaurant : Pizza Smart</h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-2 pl-0 pr-0">
+                                <div class="cardDetails">
+                                    <div class="cardDetailsHeading"><span>Price</span></div>
+                                    <div class="cardDetailsPrice">
+                                        <h3>Rs 3000</h3>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-2 pl-0 pr-0">
+                                <div class="cardDetails">
+                                    <div class="cardDetailsHeading"><span>Quantity</span></div>
+                                    <div class="cardDetailsQuantity">
+                                        <input type="number" value="1">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-2 pl-0 pr-0">
+                                <div class="cardDetails">
+                                    <div class="cardDetailsHeading"><span>Subtotal</span></div>
+                                    <div class="cardDetailsSubtotal">
+                                        <h3>Rs 3000</h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> -->
+                    <div class="row mr-0 ml-0">
+                        <div class="col-md-6 pl-0 pr-0"><div class="cardDetailsHeading"><span>Products</span></div></div>
+                        <div class="col-md-2 pl-0 pr-0"><div class="cardDetailsHeading"><span>Price</span></div></div>
+                        <div class="col-md-2 pl-0 pr-0"><div class="cardDetailsHeading"><span>Quantity</span></div></div>
+                        <div class="col-md-2 pl-0 pr-0"><div class="cardDetailsHeading"><span>Subtotal</span></div></div>
+                    </div>
+                    <div class="row bb skeleton-bb">
+                        <div class="col-lg-6 pl-0 pr-0">
+                            <div class="cardDetails">
+                                <div class="cartDetailsFlex">
+                                    <i class="fa-solid fa-trash"></i>
+                                    <img src="assets/images/grey.png" alt="">
+                                    <div class="cartDetailsTitle skeletonTitle">
+                                        <h3>Chicken Tikka Pizza</h3>
+                                        <h4>Restaurant</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 pl-0 pr-0">
+                            <div class="cardDetails">
+                                <div class="cardDetailsPrice skeletonTitle">
+                                    <h3>Rs 3000</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 pl-0 pr-0">
+                            <div class="cardDetails">
+                                <div class="cardDetailsQuantity skeletonTitle">
+                                    <input type="number">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 pl-0 pr-0">
+                            <div class="cardDetails">
+                                <div class="cardDetailsSubtotal skeletonTitle">
+                                    <h3>Rs 3000</h3>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-md-6 mb-3">
-                        <div class="aboutImg">
-                            <img src="assets/images/banner.jpg" alt="">
+
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="cartSummary">
+                        <h2>Summary</h2>
+                        <div class="cartSummaryClone">
+                        <div class="cartSummarySubTotal skeletonTitleSubtotal">
+                            <span>Subtotal</span>
+                            <span>Rs 3000</span>
                         </div>
+                    </div>
+                        <div class="cartSummaryTotal">
+                            <span>Total</span>
+                            <span class="cartSummaryTotalPrice">Rs 3000</span>
+                        </div>
+                        <button>Proceed to Checkout <i class="fa-solid fa-check"></i></button>
                     </div>
                 </div>
             </div>
+            <!-- </div> -->
         </div>
     </div>
 
