@@ -241,6 +241,7 @@ function getCartItems() {
 
 
             console.log(cartSummaryTotalPrice.innerHTML);
+            console.log(doc.data().price + doc.data().price);
 
             console.log(subtotalPrice);
 
@@ -485,8 +486,8 @@ welcomeUser.innerHTML = `Hello, ${usernameLS}`;
 
 
 
-function addCount() {
-  count = count + 1;
-  console.log(count);
-  productCount.innerText += count.toString();
-}
+// function addCount() {
+//   count = count + 1;
+//   console.log(count);
+//   productCount.innerHTML = "4";
+// }
