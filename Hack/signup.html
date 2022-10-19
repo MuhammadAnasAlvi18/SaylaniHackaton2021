@@ -1,130 +1,135 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Food Website</title>
-    <link rel="stylesheet" href="./assets/css/style.css">
-    <link rel="stylesheet" href="./assets/css/buy.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:ital@1&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Food Website</title>
+  <link rel="stylesheet" href="./assets/css/style.css">
+  <link rel="stylesheet" href="./assets/css/buy.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital@1&display=swap" rel="stylesheet">
 
-   <!-- The core Firebase JS SDK is always required and must be listed first -->
-   <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-app.js"></script>
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-app.js"></script>
 
-   
-   <!-- TODO: Add SDKs for Firebase products that you want to use
+
+  <!-- TODO: Add SDKs for Firebase products that you want to use
         https://firebase.google.com/docs/web/setup#available-libraries -->
-   <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-analytics.js"></script>
-   <script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-auth.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-firestore.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-storage.js"></script>
-   
-   <script>
-     // Your web app's Firebase configuration
-     // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-     var firebaseConfig = {
-       apiKey: "AIzaSyAdYd7LAqtkJemEn8GHJaEV8kRhn7HzDVI",
-       authDomain: "practice-d9684.firebaseapp.com",
-       projectId: "practice-d9684",
-       storageBucket: "practice-d9684.appspot.com",
-       messagingSenderId: "235831722999",
-       appId: "1:235831722999:web:fc52eb6e03792972f964f2",
-       measurementId: "G-WR0P7ZFX6B"
-     };
-     // Initialize Firebase
-     firebase.initializeApp(firebaseConfig);
-     firebase.analytics();
-   </script>
+  <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-analytics.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-storage.js"></script>
+
+  <script>
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    var firebaseConfig = {
+      apiKey: "AIzaSyAdYd7LAqtkJemEn8GHJaEV8kRhn7HzDVI",
+      authDomain: "practice-d9684.firebaseapp.com",
+      projectId: "practice-d9684",
+      storageBucket: "practice-d9684.appspot.com",
+      messagingSenderId: "235831722999",
+      appId: "1:235831722999:web:fc52eb6e03792972f964f2",
+      measurementId: "G-WR0P7ZFX6B"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    firebase.analytics();
+  </script>
 
 </head>
+
 <body>
 
-  
-<div class="register">
-  <div class="registerWrapper">
-  <div class="container">
-    <div class="registerForm">
-    <div class="row justify-content-center">
-    <div class="col-lg-8 col-md-8 d-flex flex-column align-items-center justify-content-center">
-    <h1>Register</h1>
-    <div class="imgDiv">
-    <label>
-    <img src="assets/images/avatar.png" alt="" id="img">
-    <input type="file" id="file2" onchange="prevImg()">
-    </label> 
+
+  <div class="register">
+    <div class="registerWrapper">
+      <div class="container">
+        <div class="registerForm">
+          <div class="row justify-content-center">
+            <div class="col-lg-8 col-md-8 d-flex flex-column align-items-center justify-content-center">
+              <h1>Register</h1>
+              <div class="imgDiv">
+                <label>
+                  <img src="assets/images/avatar.png" alt="" id="img">
+                  <input type="file" id="file2" onchange="prevImg()">
+                </label>
+              </div>
+              <span id="signupError" class="pb-3" style="color: red;"></span>
+              <div class="login-fld">
+                <input type="text" id="username" required placeholder="Enter Your Username" />
+              </div>
+              <div class="login-fld">
+                <input type="email" id="email" required placeholder="Enter Your Email Address" />
+              </div>
+              <div class="login-fld">
+                <input type="password" id="password" required placeholder="Enter Your Password" />
+              </div>
+              <div class="login-fld">
+                <input type="number" name="number" id="usernumber" placeholder="Enter Your Number">
+              </div>
+              <div class="login-fld">
+                <input type="text" name="country" id="usercountry" placeholder="Enter Your City">
+              </div>
+              <div class="role-fld">
+                <select name="userrole" onchange="getRole()" id="roleUser">
+                  <option id="user-role" value="Restaurant">Restaurant</option>
+                  <option id="user-role" value="Customer" selected>Customer</option>
+                </select>
+              </div>
+              <div class="login-fld res-login-fld">
+                <input type="text" name="restaurant" id="userRestaurantName" placeholder="Enter Your Restaurant Name">
+              </div><br>
+              <div class="login-btn signup-btn position-relative d-flex align-items-center">
+                <input type="submit" value="Register" onclick="register()">
+                <span class="d-none" id="Regloader"></span>
+              </div>
+              <p>Already have an Account ?
+                <a href="login.html">Log in</a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    <span id="signupError" class="pb-3" style="color: red;"></span>
-    <div class="login-fld">
-      <input type="text" id="username" required placeholder="Enter Your Username" />
-     </div>
-    <div class="login-fld">
-      <input type="email" id="email" required placeholder="Enter Your Email Address" />
-     </div>
-     <div class="login-fld">
-     <input type="password" id="password" required placeholder="Enter Your Password" />
-   </div>
-   <div class="login-fld">
-   <input type="number" name="number" id="usernumber" placeholder="Enter Your Number">
   </div>
-  <div class="login-fld">
-    <input type="text" name="country" id="usercountry" placeholder="Enter Your City">
-   </div>
-   <div class="role-fld">
-     <select name="userrole" onchange="getRole()" id="roleUser">
-       <option id="user-role" value="Restaurant">Restaurant</option>
-       <option id="user-role" value="Customer" selected>Customer</option>
-     </select>
-   </div>
-   <div class="login-fld res-login-fld">
-    <input type="text" name="restaurant" id="userRestaurantName" placeholder="Enter Your Restaurant Name">
-   </div><br>
-    <div class="login-btn signup-btn position-relative d-flex align-items-center">
-      <input type="submit" value="Register" onclick="register()">
-      <span class="d-none" id="Regloader"></span>
-    </div>
-    <p>Already have an Account ?
-    <a href="login.html">Log in</a></p>
-  </div>
-</div>
-</div>
-</div>
-</div>
-</div>
 
 
-<script>
+  <script>
 
-let file = document.getElementById("file2");
-let img = document.getElementById("img");
-let resloginfld = document.querySelector(".res-login-fld");
+    let file = document.getElementById("file2");
+    let img = document.getElementById("img");
+    let resloginfld = document.querySelector(".res-login-fld");
 
-function prevImg(){
-let image = file.files[0];
-let url = URL.createObjectURL(image);
-img.src = url;
-}
+    function prevImg() {
+      let image = file.files[0];
+      let url = URL.createObjectURL(image);
+      img.src = url;
+    }
 
-function getRole(){
+    function getRole() {
 
-let e = document.getElementById("roleUser");
-let text = e.options[e.selectedIndex].text;
-console.log(text);
+      let e = document.getElementById("roleUser");
+      let text = e.options[e.selectedIndex].text;
+      console.log(text);
 
-if(text === "Restaurant"){
-  resloginfld.classList.add("d-block");
-}
-else{
-  resloginfld.classList.remove("d-block");
-}
+      if (text === "Restaurant") {
+        resloginfld.classList.add("d-block");
+      }
+      else {
+        resloginfld.classList.remove("d-block");
+      }
 
-}
+    }
 
-</script>
+  </script>
 
-    <script src="./assets/js/app.js"></script>
+  <script src="./assets/js/app.js"></script>
 </body>
-</html> 
+
+</html>
