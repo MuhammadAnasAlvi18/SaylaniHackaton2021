@@ -998,6 +998,7 @@ h2.cardsh2 {
 
 .buyCards {
     width: 100%;
+    height: 100%;
     background: #fff;
     position: relative;
     /* padding-bottom: 50px; */
@@ -1005,7 +1006,6 @@ h2.cardsh2 {
 
 .buyCards img {
     width: 100%;
-    height: 100%;
 }
 
 .BuycardSec {

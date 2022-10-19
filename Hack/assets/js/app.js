@@ -8,11 +8,9 @@ const LoginForm = document.querySelector('.login-form')
 let usernumber = document.getElementById('usernumber')
 let usercountry = document.getElementById('usercountry')
 let userRole = document.getElementById('user-role')
-console.log(userRole)
 let card = document.querySelector('#cards .row')
 let loader = document.getElementById('loader');
 let loaderh1 = document.getElementById('loaderh1');
-console.log(card)
 let cards = document.getElementById('cards')
 let restaurantName = document.getElementById('restaurantName')
 let price = document.getElementById('price')
@@ -42,7 +40,6 @@ async function Addproduct() {
   DeliveryDIVspan.classList.remove("d-none");
   let id = uid
   let url = await uploadImage(id)
-  console.log(url)
   getProducts();
   await db.collection("products").doc().set({
     restaurantName: restaurantName.value,
@@ -57,7 +54,6 @@ async function Addproduct() {
     orderFrom: []
   })
     .then(() => {
-      console.log("Document successfully written!");
       floatMsg.classList.add("active");
       DeliveryDIVspan.classList.add("d-none");
       setTimeout(() => {
@@ -89,7 +85,6 @@ function uploadImage(id) {
 function getProducts() {
   db.collection("products").get().then((querySnapshot) => {
     querySnapshot.forEach((doc) => {
-      console.log(doc.id, " => ", doc.data());
       if (doc.data().Id === uid) {
         loader.classList.add("d-none");
         loader.classList.add("w-0");
@@ -106,7 +101,6 @@ function getProducts() {
         let min = minutes < 2 ? "minute" : "minutes";
         let sec = seconds < 2 ? "second" : "seconds";
 
-        console.log(hour, min, sec, day);
 
         const mainCardDetail = `
      <div class="col-lg-4 col-md-8 col-sm-12 mb-5">
@@ -142,7 +136,6 @@ function getAllproducts() {
   db.collection("products").get().then((querySnapshot) => {
     querySnapshot.forEach((doc) => {
       buyLoader.classList.add("d-none");
-      console.log(doc.id, " => ", doc.data());
       const mainCardDetails = `
       <div class="col-lg-4 col-md-6 mb-4">
       <div class="buyCards">
@@ -181,10 +174,8 @@ function getCartItems() {
     snapshot.forEach((doc) => {
       let docRef = db.collection("users").doc(uid);
       docRef.get().then((docs) => {
-        console.log(docs.data().myCart);
 
         docs.data().myCart.forEach((ids) => {
-          console.log(ids);
 
           if (ids === doc.id) {
             skeletonbb.classList.add("d-none");
@@ -240,10 +231,7 @@ function getCartItems() {
             cartSummarySubTotal.innerHTML += clonecartSummarySubTotal;
 
 
-            console.log(cartSummaryTotalPrice.innerHTML);
-            console.log(doc.data().price + doc.data().price);
 
-            console.log(subtotalPrice);
 
           }
 
@@ -267,7 +255,6 @@ async function register() {
       // Signed in '
       var user = userCredential.user;
       let uid = user.uid
-      console.log(user)
       let Url2 = await uploadImageFunc(uid)
       let obj = {
         username: userName.value,
@@ -283,7 +270,6 @@ async function register() {
         orderCompleted: 0,
         myCart: []
       }
-      console.log(obj)
       await db.collection('users').doc(uid).set(obj)
       userName.value = "";
       emailEl.value = "";
@@ -310,13 +296,11 @@ function loginForm() {
       // Signed in
       setTimeout(() => { loginbtn.classList.remove("active"); }, 2000)
       var user = userCredential.user;
-      console.log(user.uid, '49')
       uid = user.uid
       let docRef = db.collection('users').doc(uid);
       docRef.get().then((doc) => {
         if (doc.exists) {
           let role = doc.data().role
-          console.log("Document data:", doc.data(), role);
           if (role === true) {
             window.location = 'restaurantAdd.html'
           }
@@ -332,8 +316,6 @@ function loginForm() {
       setTimeout(() => { loginbtn.classList.remove("active"); errorMessage ? Loginerror.innerHTML = errorMessage : Loginerror.innerHTML = ""; }, 2000)
       var errorCode = error.code;
       var errorMessage = error.message;
-      console.log(errorMessage);
-      console.log(error);
     });
 
 }
@@ -347,14 +329,10 @@ firebase.auth().onAuthStateChanged((user) => {
     // User is signed in, see docs for a list of available properties
     // https://firebase.google.com/docs/reference/js/firebase.User
     uid = user.uid;
-    console.log(user)
-    console.log(uid)
     let docRef = db.collection('users').doc(uid);
     docRef.get().then((doc) => {
       if (doc.exists) {
-        console.log(doc.data().myCart.length.toString());
         cartCount.forEach((cartCounts) => { cartCounts.innerHTML = doc.data().myCart.length.toString(); })
-        console.log("Document data:", doc.data());
         localStorage.setItem("resName", doc.data().userRestaurantName);
         localStorage.setItem("avatar", doc.data().userimage);
         localStorage.setItem("username", doc.data().username);
@@ -363,10 +341,8 @@ firebase.auth().onAuthStateChanged((user) => {
         userEl.innerText = usernameEl
       } else {
         // doc.data() will be undefined in this case
-        console.log("No such document!");
       }
     }).catch((error) => {
-      console.log("Error getting document:", error);
     });
 
 
@@ -379,7 +355,6 @@ function signout() {
   localStorage.removeItem("resName");
   localStorage.clear();
   firebase.auth().signOut().then(() => {
-    console.log('SignOut')
     window.location = 'login.html'
     // Sign-out successful.
   }).catch((error) => {
@@ -409,11 +384,8 @@ function orderfunc(productId) {
   let btnClass = productId.getAttribute("class");
   let splitId = btnClass.split("addToCartAnchor ");
   productCartId.push(splitId[1]);
-  console.log(productCartId);
   productId.innerHTML = `Added To Cart <i class="fa-solid fa-check"></i>`
-
   let uniq = [...new Set(productCartId)];
-  console.log(uniq);
 
   db.collection("users").doc(uid).update({
     myCart: [...uniq]
@@ -421,7 +393,6 @@ function orderfunc(productId) {
 
   let docRef = db.collection("users").doc(uid)
   docRef.get().then((doc) => {
-    console.log(doc.data().myCart);
   })
 
   //   db.collection("products").doc("5XIue8r9Z7LdbeqH9at8").update({
@@ -435,7 +406,6 @@ function delfunc(productId) {
   let btnClass = productId.getAttribute("class");
   let splitId = btnClass.split("orderBtn ");
   let dltId = splitId[1];
-  console.log(dltId);
   db.collection("products").doc(dltId).delete().then(() => {
     setTimeout(() => {
       del_popup.classList.remove("active")
@@ -457,7 +427,6 @@ function cart() {
   //     cartId: productCartId
   // })
 
-  console.log("CART CLICKED");
 
 }
 
@@ -478,16 +447,15 @@ let avatarUrl = localStorage.getItem("avatar");
 let usernameLS = localStorage.getItem("username");
 let resName = localStorage.getItem("resName");
 // bannerh1.innerHTML = `Welcome, `;
-avatarUrl ? avatarImg.src = avatarUrl : avatarImg.src = avatarUrl
+avatarUrl ? avatarImg.src = avatarUrl : ""
 bannerSpan.innerHTML = usernameLS;
 // avatarImg.src = avatarUrl;
-console.log(usernameLS);
 welcomeUser.innerHTML = `Hello, ${usernameLS}`;
 
 
 
 // function addCount() {
 //   count = count + 1;
-//   console.log(count);
+//
 //   productCount.innerHTML = "4";
 // }
