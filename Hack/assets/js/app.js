@@ -167,8 +167,8 @@ function getCartItems() {
   let skeletonbb = document.querySelector(".skeleton-bb");
   let skeletonTitleSubtotal = document.querySelector(".skeletonTitleSubtotal");
   let cartSummarySubTotal = document.querySelector(".cartSummaryClone");
-  let cartSummaryTotalPrice = document.querySelector(".cartSummaryTotalPrice");
-  let subtotalPrice = document.querySelector(".subtotalPrice");
+  // let cartSummaryTotalPrice = document.querySelector(".cartSummaryTotalPrice");
+  // let subtotalPrice = document.querySelector(".subtotalPrice");
   let proRef = db.collection("products");
   proRef.get().then((snapshot) => {
     snapshot.forEach((doc) => {
@@ -186,7 +186,7 @@ function getCartItems() {
                         <div class="col-lg-6 pl-0 pr-0">
                             <div class="cardDetails">
                                 <div class="cartDetailsFlex">
-                                    <i class="fa-solid fa-trash"></i>
+                                    <i class="fa-solid fa-trash ${doc.id}" onclick="delCartItem(this)"></i>
                                     <img src="${doc.data().image}" alt="">
                                     <div class="cartDetailsTitle">
                                         <h3>${doc.data().ItemName}</h3>
@@ -245,6 +245,14 @@ function getCartItems() {
 }
 
 getCartItems();
+
+function delCartItem(cartItemId) {
+  console.log(cartItemId);
+  let btnClass = cartItemId.getAttribute("class");
+  let splitId = btnClass.split("fa-solid fa-trash ");
+  let dltId = splitId[1];
+  console.log(dltId);
+}
 
 async function register() {
   let signupbtn = document.querySelector(".signup-btn");

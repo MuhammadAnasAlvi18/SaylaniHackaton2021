@@ -1350,6 +1350,9 @@ h2.cardsh2 {
     .cartDetailsFlex i {
         margin-bottom: 10px;
     }
+    .cartDetailsTitle h3{
+        text-align: center;
+    }
 }
 
 .cardDetailsPrice {
