@@ -147,7 +147,8 @@ function getAllproducts() {
               <span>Reviews : 50+</span>
           </div>
           <h3>${doc.data().ItemName}</h3>
-          <h4>${doc.data().category}</h4>
+          <p>${doc.data().ItemDesc}</p>
+          <h4>Category : ${doc.data().category}</h4>
           <h5 class="price">Price : ${doc.data().price} Rs</h5>
           <div class="plusMinus"><a href="javascript:void(0)">-</a><span class="productCount">1</span><a href="javascript:void(0)" onclick="addCount()">+</a></div>
           <div class="addtoCartAnchorDiv"><a href="javascript:void(0)" class="addToCartAnchor ${doc.id}" onclick="orderfunc(this)">Add to Cart</a></div>
@@ -180,7 +181,6 @@ function getCartItems() {
           if (ids === doc.id) {
             skeletonbb.classList.add("d-none");
             skeletonTitleSubtotal.classList.add("d-none");
-            // skeletonTitleTotal.classList.add("d-none");
             let cloneRows = `
           <div class="row bb">
                         <div class="col-lg-6 pl-0 pr-0">
@@ -224,7 +224,7 @@ function getCartItems() {
             let clonecartSummarySubTotal = `
       <div class="cartSummarySubTotal">
       <span>Subtotal</span>
-      <span class="subtotalPrice">Rs ${doc.data().price}</span>
+      <span class="subtotalPrice">Rs <span class="sbPrice">${doc.data().price}</span></span>
       </div>
       `
 
@@ -466,4 +466,38 @@ welcomeUser.innerHTML = `Hello, ${usernameLS}`;
 //   count = count + 1;
 //
 //   productCount.innerHTML = "4";
+// }
+
+// function doConsole(){
+
+//   let cartSummarySubTotal = document.getElementsByClassName("sbPrice");
+//   let cartSummaryTotalPrice = document.getElementsByClassName("cartSummaryTotalPrice");
+
+
+//   console.log(cartSummarySubTotal);
+//   let arry = [...cartSummarySubTotal]
+
+//   let arrx = arry.splice(0).map((item)=>{
+//     return [...item.innerHTML]
+//   })
+
+//   console.log(arrx);
+
+//   // let b = arry.split(',').map(function(item) {
+//   //   return parseInt(item, 10);
+//   // });
+
+//   // console.log(b);
+
+
+//   // for (let i = 0; i < cartSummarySubTotal.length; i++) {
+//   //   let price = cartSummarySubTotal[i].innerHTML;
+//     // let numPrice = Number(price.split("Rs")[1]);
+//     // console.log(numPrice);
+//     // cartSummaryTotalPrice[0].innerHTML = `Rs ${numPrice+numPrice}`
+
+//     // const sum = [1, 2, 3].reduce((partialSum, a) => partialSum + a, 0);
+//     // console.log(sum); // 6
+
+//   // }
 // }
