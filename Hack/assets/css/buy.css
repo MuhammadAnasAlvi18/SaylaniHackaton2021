@@ -302,7 +302,6 @@ a:focus {
 
 .cardsDiv {
     width: 100%;
-    height: 80%;
     font-family: 'Poppins', sans-serif;
     font-size: 16px;
     text-align: center;
@@ -316,8 +315,8 @@ a:focus {
 
 .cardsDiv img {
     width: 100%;
-    height: 40%;
-    object-fit: contain;
+    height: 250px;
+    object-fit: cover;
     border-bottom: 1px solid #a1a1a1;
 }
 
@@ -698,6 +697,7 @@ h2.cardsh2 {
 }
 
 .customerBanner2 {
+    min-height: 100vh;
     height: 100%;
 }
 
@@ -984,14 +984,15 @@ h2.cardsh2 {
 
 .buySection {
     width: 100%;
+    min-height: 100vh;
     background: url(../images/banner.jpg);
     background-position: center;
     background-size: cover;
-    ;
 }
 
 .buySectionOverlay {
     width: 100%;
+    min-height: 100vh;
     height: 100%;
     background: rgba(0, 0, 0, 0.5);
     backdrop-filter: blur(5px);
@@ -1007,15 +1008,16 @@ h2.cardsh2 {
 
 .buyCards {
     width: 100%;
+    min-height: 630px;
     height: 100%;
     background: #fff;
     position: relative;
-    /* padding-bottom: 50px; */
 }
 
 .buyCards img {
     width: 100%;
-    height: 30%;
+    min-height: 200px;
+    height: 200px;
     object-fit: cover;
 }
 
@@ -1286,6 +1288,7 @@ h2.cardsh2 {
 
 .customerWrapper {
     width: 100%;
+    min-height: 100vh;
     height: 100%;
     background: rgba(0, 0, 0, 0.5);
     backdrop-filter: blur(5px);
@@ -1299,8 +1302,6 @@ h2.cardsh2 {
 
 .cartDetail {
     width: 100%;
-    /* height: 100%; */
-    /* background: #fff; */
     border: 3px solid #fff;
     overflow: hidden;
 }
@@ -1308,18 +1309,17 @@ h2.cardsh2 {
 .cardDetails {
     width: 100%;
     height: 100%;
-    /* border:1px solid blueviolet; */
     display: flex;
     align-items: center;
     justify-content: flex-start;
     flex-direction: column;
-    /* flex-wrap: wrap; */
     padding: 0 0 20px 0;
-    /* border: 1px solid blueviolet; */
 }
 
 .cardDetails img {
-    width: 30%;
+    width: 150px;
+    height: 100px;
+    object-fit: cover;
 }
 
 .cartDetailsTitle h3 {
